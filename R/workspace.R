@@ -27,10 +27,17 @@ cran_it <- function(package) {
 #' @title Git It!
 #'
 #' @description Try to load a package you got from github, or, install it from github if you do not have it yet. If you cannot install from github it will also install devtools to allow it.
-#' @param package The name of the package to try and load.
-#' @param repo The name of the Github repository to load from, as if using install_github.
-git_it <- function(package, repo) {
-  if(!'devtools' %in% rownames(installed.packages())){install.packages("devtools")}
-  if(!package %in% rownames(installed.packages())){devtools::install_github(repo)}
+#' @param repo The name of the Github repository to load from, as if using install_github. If already installed will use the package portion to load the library.
+git_it <- function(repo) {
+  user = strsplit(repo,'/')[[1]][1]
+  package = strsplit(repo,'/')[[1]][2]
+  if(!'devtools' %in% rownames(installed.packages())){
+    message('You do not have devtools installed, so I am doing that first.')
+    install.packages("devtools")
+  }
+  if(!package %in% rownames(installed.packages())){
+    message('You do not have ',package,' installed, so I am getting it from github.')
+    devtools::install_github(repo)
+  }
   library(package, character.only=T)
 }

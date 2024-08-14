@@ -4,12 +4,10 @@
 \alias{git_it}
 \title{Git It!}
 \usage{
-git_it(package, repo)
+git_it(repo)
 }
 \arguments{
-\item{package}{The name of the package to try and load.}
-
-\item{repo}{The name of the Github repository to load from, as if using install_github.}
+\item{repo}{The name of the Github repository to load from, as if using install_github. If already installed will use the package portion to load the library.}
 }
 \description{
 Try to load a package you got from github, or, install it from github if you do not have it yet. If you cannot install from github it will also install devtools to allow it.
