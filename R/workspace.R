@@ -12,7 +12,7 @@ remove_variables <- function(verbose=F) {
   }
   to.remove = all.objects[!all.objects %in% consts]
   if (verbose) {message('removing ',to.remove)}
-  remove(to.remove, globalenv(), FALSE)
+  remove(list=to.remove, envir=globalenv(), inherits=FALSE)
 }
 
 #' @title CRAN It!
