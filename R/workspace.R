@@ -3,14 +3,15 @@
 #'
 #' @description Remove all objects from the global environment except constants. A constant is any object with an entirely uppercase name.
 #' @param verbose List a bunch of stuff from the environment.
-remove_variables <- function(verbose=F) {
+#' @param exceptions A list of variables to be excepted from the rm command.
+remove_variables <- function(exceptions=c(), verbose=F) {
   all.objects = ls(globalenv())
   if (verbose) {message('found ',all.objects)}
   consts = c()
   for (object in all.objects) {
     if (object == toupper(object)) {consts = c(consts,object)}
   }
-  to.remove = all.objects[!all.objects %in% consts]
+  to.remove = all.objects[!all.objects %in% consts & !all.objects %in% exceptions]
   if (verbose) {message('removing ',to.remove)}
   remove(list=to.remove, envir=globalenv(), inherits=FALSE)
 }
