@@ -4,10 +4,12 @@
 \alias{backtrack_wd}
 \title{Backtrack Working Directory!}
 \usage{
-backtrack_wd(target)
+backtrack_wd(target, verbose = F)
 }
 \arguments{
 \item{target}{The name of the directory that will become the new working directory.}
+
+\item{verbose}{Should stuff be printed to the console or not?}
 }
 \description{
 Go through the current working directory and set a new WD from its path. Helpful for working on different devices with different paths to the same git repo.

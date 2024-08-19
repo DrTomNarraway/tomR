@@ -47,7 +47,8 @@ git_it <- function(repo) {
 #'
 #' @description Go through the current working directory and set a new WD from its path. Helpful for working on different devices with different paths to the same git repo.
 #' @param target The name of the directory that will become the new working directory.
-backtrack_wd <- function(target) {
+#' @param verbose Should stuff be printed to the console or not?
+backtrack_wd <- function(target, verbose=F) {
   current.wd = getwd()
   split.wd = strsplit(current.wd, '/')[[1]]
   new.wd = ''
@@ -56,5 +57,5 @@ backtrack_wd <- function(target) {
     if (split.wd[i] == target) {break}
   }
   setwd(new.wd)
-  message('working directory is now ',getwd())
+  if (verbose) message('working directory is now ',getwd())
 }
