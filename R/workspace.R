@@ -64,8 +64,10 @@ backtrack_wd <- function(target, verbose=F) {
 #'
 #' @description Attempt to load a file, or stop and warn if the path is incorrect.
 #' @param path The path to the file you want to load.
-#' @param error_message The message to display if the file is not found.
-try_load <- function(path, error_message) {
-  if (!file.exists(path)) {stop(error_message)}
-  load(path)
+try_load <- function(path) {
+  tryCatch(
+    {load(path, envir=globalenv())},
+    error=function(e) {message('ERROR'); print(e)},
+    warning=function(w) {message('WARNING'); print(w)}
+  )
 }

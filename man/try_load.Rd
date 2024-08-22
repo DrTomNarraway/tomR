@@ -4,12 +4,10 @@
 \alias{try_load}
 \title{Try and Load a File.}
 \usage{
-try_load(path, error_message)
+try_load(path)
 }
 \arguments{
 \item{path}{The path to the file you want to load.}
-
-\item{error_message}{The message to display if the file is not found.}
 }
 \description{
 Attempt to load a file, or stop and warn if the path is incorrect.
