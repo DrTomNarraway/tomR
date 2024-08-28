@@ -12,5 +12,5 @@ git_it(repo, quiet = F)
 \item{quiet}{Stop the function from printing messages to your console.}
 }
 \description{
-Try to load a package you got from github, or, install it from github if you do not have it yet. If you do not have devtools the function will first install that.
+Try to load a package you got from github, or, install it from github if you do not have it yet. If you do not have devtools the function will first install that. After doing all that, spin up the library in the current environment.
 }
