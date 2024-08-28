@@ -17,13 +17,13 @@ try_load <- function(path, error_message) {
 #' @param dir The path to the directory where your files are located.
 ask_from_path <- function(dir) {
   last_char <- substr(dir, nchar(dir), nchar(dir))
-  if (!last_char %in% c('\\','/')) {path <- paste0(path,'\\')}
-  files <- list.files(path)
+  if (!last_char %in% c('\\','/')) {dir <- paste0(dir,'\\')}
+  files <- list.files(dir)
   message('')
   for (f in 1:length(files)) {message(f,' : ',files[f])}
   message('')
   input <- NULL
   while (!is.numeric(input)) {input <- as.numeric(readline('Please use a number to choose one of the listed files: '))}
-  path_to_file <- paste0(path,files[input])
+  path_to_file <- paste0(dir,files[input])
   load(path_to_file, envir=globalenv())
 }

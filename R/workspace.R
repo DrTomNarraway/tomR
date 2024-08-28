@@ -16,33 +16,6 @@ remove_variables <- function(exceptions=c(), verbose=F) {
   remove(list=to.remove, envir=globalenv(), inherits=FALSE)
 }
 
-#' @title CRAN It!
-#'
-#' @description Try to load a package, and if you don't have it try to install it from CRAN instead.
-#' @param package The name of the package to try and load.
-cran_it <- function(package) {
-  if(!package %in% rownames(installed.packages())){install.packages(package)}
-  library(package, character.only=T)
-}
-
-#' @title Git It!
-#'
-#' @description Try to load a package you got from github, or, install it from github if you do not have it yet. If you cannot install from github it will also install devtools to allow it.
-#' @param repo The name of the Github repository to load from, as if using install_github. If already installed will use the package portion to load the library.
-git_it <- function(repo) {
-  user = strsplit(repo,'/')[[1]][1]
-  package = strsplit(repo,'/')[[1]][2]
-  if(!'devtools' %in% rownames(installed.packages())){
-    message('You do not have devtools installed, so I am doing that first.')
-    install.packages("devtools")
-  }
-  if(!package %in% rownames(installed.packages())){
-    message('You do not have ',package,' installed, so I am getting it from github.')
-    devtools::install_github(repo)
-  }
-  library(package, character.only=T)
-}
-
 #' @title Backtrack Working Directory!
 #'
 #' @description Go through the current working directory and set a new WD from its path. Helpful for working on different devices with different paths to the same git repo.
