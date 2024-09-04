@@ -3,7 +3,7 @@
 #' @description Attempt to load a file, or stop and warn if the path is incorrect.
 #' @param path The path to the file you want to load.
 #' @param error_message Message to display if an error occurs.
-try_load <- function(path, error_message) {
+try_load <- function(path, error_message='File not found.') {
   if (!file.exists(path)) {
     message('')
     print(error_message)
@@ -21,12 +21,9 @@ ask_from_path <- function(dir) {
   files <- list.files(dir)
   path_to_file <- ''
   if (length(files) > 1) {
-    message('')
     for (f in 1:length(files)) {message(f,' : ',files[f])}
-    message('')
-    input <- NULL
-    while (!is.numeric(input)) {input <- as.numeric(readline('Please use a number to choose one of the listed files: '))}
-    path_to_file <- paste0(dir,files[input])
+    input <- tomR::return_input(files)
+    path_to_file <- paste0(dir,input)
   }
   else {
     message('')

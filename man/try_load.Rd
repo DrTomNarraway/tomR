@@ -4,7 +4,7 @@
 \alias{try_load}
 \title{Try and Load a File.}
 \usage{
-try_load(path, error_message)
+try_load(path, error_message = "File not found.")
 }
 \arguments{
 \item{path}{The path to the file you want to load.}

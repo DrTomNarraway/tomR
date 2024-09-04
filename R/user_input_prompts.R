@@ -11,6 +11,8 @@ return_input <- function(options, prompt='Please choose from the following optio
   for (i in 1:length(options)){print(paste0(i,' = ',options[i]))}
   while (!input %in% 1:length(options) || !is.numeric(input)) {
     input <- as.numeric(readline('Choice: '))
+    if(!input %in% 1:length(options)){print('That was not an option.')}
+    if(!is.numeric(input)){print('That was not a number.')}
   }
   message('')
   return(options[input])
