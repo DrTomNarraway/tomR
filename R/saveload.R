@@ -44,7 +44,7 @@ load_or_do <- function(path, do, quiet=F) {
   file_exists <- file.exists(path)
   if (file_exists) {
     if(!quiet){message('Loading...')}
-    load(path)
+    load(path, envir=globalenv())
   } else {
     if(!quiet){message('Doing...')}
     do()
