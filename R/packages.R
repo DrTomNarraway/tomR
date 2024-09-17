@@ -30,6 +30,7 @@ git_it <- function(repo, quiet=F) {
     if (current.version != github.version) {
       if (!quiet) {message('\n',package,' is installed but out of date (',current.version,'), getting the new version (',github.version,').\n')}
       devtools::install_github(repo)
+      current.version <- installed.packages()[package,]['Version']
     }
   }
   # package must now be installed and up to date
