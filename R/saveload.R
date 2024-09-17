@@ -1,3 +1,4 @@
+
 #' @title Try and Load a File.
 #'
 #' @description Attempt to load a file, or stop and warn if the path is incorrect.
@@ -26,9 +27,7 @@ ask_from_path <- function(dir) {
     path_to_file <- paste0(dir,input)
   }
   else {
-    message('')
-    message('Only one file found, so I am just going to load that one.')
-    message('')
+    message('Only one file found, so I am just going to load that one.\n')
     path_to_file <- paste0(dir,files[1])
   }
   load(path_to_file, envir=globalenv())
@@ -43,10 +42,10 @@ ask_from_path <- function(dir) {
 load_or_do <- function(path, do, quiet=F) {
   file_exists <- file.exists(path)
   if (file_exists) {
-    if(!quiet){message('Loading...')}
+    if(!quiet){message('Loading file at \'',path,'\'.\n')}
     load(path, envir=globalenv())
   } else {
-    if(!quiet){message('Doing...')}
+    if(!quiet){message('Doing...');print(do);message('')}
     do()
   }
 }
