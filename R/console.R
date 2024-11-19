@@ -20,17 +20,7 @@ dm <- function(..., sep='', lb=TRUE) {
 #' @param sep string // Separator to use between arguments.
 #' @param lb bool // Should an empty line be printed after the message?
 colour_printer <- function(..., colour='red', sep=' ', lb=TRUE){
-  colours <- c(
-    black = "\033[0;30m",
-    red = "\033[0;31m",
-    green = "\033[0;32m",
-    yellow = "\033[0;33m",
-    blue = "\033[0;34m",
-    pink = "\033[0;35m",
-    cyan = "\033[0;36m",
-    lavender = "\033[0;37m",
-  )
-  colour <- colours[colour]
+  colour <- tomR::ansi_colours[colour]
   args <- lapply(list(...), as.character)
   msg <- paste(args, collapse=sep)
   if (lb) {msg <- paste(msg,'\n')}
@@ -63,20 +53,10 @@ return_input <- function(options, prompt='Please choose from the following optio
 #' @param sep string // Separator to use between arguments.
 #' @param lb bool // Should an empty line be printed after the message?
 rbprint <- function(..., sep=' ', lb=TRUE){
-  colours <- c(
-    red = "\033[0;31m",
-    yellow = "\033[0;33m",
-    green = "\033[0;32m",
-    blue = "\033[0;34m",
-    cyan = "\033[0;36m",
-    pink = "\033[0;35m",
-    lavender = "\033[0;37m",
-    black = "\033[0;30m"
-  )
   args <- lapply(list(...), as.character)
   msg <- ""
   for (i in 1:length(args)) {
-    msg <- paste(msg, colours[i], args[i], "\033[0m", collapse=sep)
+    msg <- paste(msg, tomR::ansi_colours[i], args[i], "\033[0m", collapse=sep)
   }
   if (lb) {msg <- paste(msg,'\n')}
   cat(msg)
