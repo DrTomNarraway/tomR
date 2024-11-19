@@ -46,17 +46,21 @@ return_input <- function(options, prompt='Please choose from the following optio
   return(options[input])
 }
 
-#' @title Rainbow Print.
+#' @title Pride Print.
 #'
-#' @description Print to the console in a cycle of colours matching the rainbow.
+#' @description Print to the console in a cycle of colours, evoking the rainbow.
 #' @param ... Cohered to String // Content to print to the console.
 #' @param sep string // Separator to use between arguments.
 #' @param lb bool // Should an empty line be printed after the message?
-rbprint <- function(..., sep=' ', lb=TRUE){
+pride <- function(..., sep=' ', lb=TRUE){
   args <- lapply(list(...), as.character)
+  colours <- tomR::ansi_colours[2:7]
+  while (length(colours) < length(args)) {
+    colours <- c(colours,colours)
+  }
   msg <- ""
   for (i in 1:length(args)) {
-    msg <- paste(msg, tomR::ansi_colours[i], args[i], "\033[0m", collapse=sep)
+    msg <- paste(msg, colours[i], args[i], "\033[0m", collapse=sep)
   }
   if (lb) {msg <- paste(msg,'\n')}
   cat(msg)
