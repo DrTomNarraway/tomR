@@ -33,6 +33,7 @@ git_it <- function(repo, quiet=F) {
       current.version <- installed.packages()[package,]['Version']
     }
   }
+  current.version <- installed.packages()[package,]['Version']
   # package must now be installed and up to date
   if(!quiet){message('I have gitten you ',package,' version ',current.version,'.\n')}
   library(package, character.only=T)
