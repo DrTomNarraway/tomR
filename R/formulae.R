@@ -18,7 +18,6 @@ ssd <- function(sample, dps=3, quiet=F){
     pride(
       paste0('sample mean = ',x),
       paste0('n = ',n),
-      paste0('s = ',s),
       paste0('out = ',out)
     )
     message('')

@@ -1,7 +1,7 @@
 Package: tomR
 Type: Package
 Title: Tom R
-Version: 2.2.1
+Version: 2.2.2
 Author: Dr Tom Narraway
 Maintainer: Dr Tom Narraway <tomax591.de@gmail.com>
 Description: A personal R package to reduce the amount of times I need to write the exact same lines of code.
