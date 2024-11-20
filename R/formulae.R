@@ -6,12 +6,13 @@
 #' @param dps numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
 #' @param quiet bool, default = false. If quiet do not print stuff to console.
 ssd <- function(sample, dps=3, quiet=F){
-  x    = mean(sample)
-  n    = length(sample)
-  smx  = sample - x
-  sqrd = smx ^ 2
-  s    = sum(sqrd)
-  out  = sqrt(s / n)
+  l      = length(sample)
+  x      = sample
+  x.mean = mean(sample)
+  x.diff = x - x.mean
+  x.sqrd = x.diff ^ 2
+  x.sum  = sum(x.sqrd / l)
+  out    = sqrt(x.sum)
   if (dps > 0) out = round(out, dps)
   if (!quiet) {
     pride(
