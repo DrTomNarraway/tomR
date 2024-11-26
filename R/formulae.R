@@ -3,9 +3,8 @@
 #'
 #' @description Calculate the sample standard deviation.
 #' @param sample vector-like. The sample from which to calculate the standard deviation.
-#' @param dps numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
-#' @param quiet bool, default = false. If quiet do not print stuff to console.
-ssd <- function(sample, dps=3, quiet=F){
+#' @param places numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
+ssd <- function(sample, places=3) {
   l      = length(sample)
   x      = sample
   x.mean = mean(sample)
@@ -13,15 +12,7 @@ ssd <- function(sample, dps=3, quiet=F){
   x.sqrd = x.diff ^ 2
   x.sum  = sum(x.sqrd / l)
   out    = sqrt(x.sum)
-  if (dps > 0) out = round(out, dps)
-  if (!quiet) {
-    pride(
-      paste0('sample mean = ',x),
-      paste0('n = ',n),
-      paste0('out = ',out)
-    )
-    message('')
-  }
+  if (places > 0) out = round(out, places)
   return(out)
 }
 
