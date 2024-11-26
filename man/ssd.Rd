@@ -4,14 +4,12 @@
 \alias{ssd}
 \title{Sample Standard Deviation}
 \usage{
-ssd(sample, dps = 3, quiet = F)
+ssd(sample, places = 3)
 }
 \arguments{
 \item{sample}{vector-like. The sample from which to calculate the standard deviation.}
 
-\item{dps}{numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.}
-
-\item{quiet}{bool, default = false. If quiet do not print stuff to console.}
+\item{places}{numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.}
 }
 \description{
 Calculate the sample standard deviation.
