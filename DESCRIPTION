@@ -13,8 +13,5 @@ Imports:
     devtools
     stats
     utils
-    var
-    install.packages
-    installed.packages
 Depends: 
     R (>= 2.10)
