@@ -11,7 +11,5 @@ LazyData: true
 RoxygenNote: 7.3.2
 Imports: 
     devtools
-    stats
-    utils
 Depends: 
     R (>= 2.10)

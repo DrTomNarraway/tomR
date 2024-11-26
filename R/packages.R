@@ -7,8 +7,8 @@
 git_it <- function(repo, quiet=F) {
   user = strsplit(repo,'/')[[1]][1]
   package = strsplit(repo,'/')[[1]][2]
-  devtools.installed <- 'devtools' %in% rownames(installed.packages())
-  package.installed <- package %in% rownames(installed.packages())
+  devtools.installed <- 'devtools' %in% rownames(utils::installed.packages())
+  package.installed <- package %in% rownames(utils::installed.packages())
   # if devtools is not installed, get it
   if (!devtools.installed) {
     if(!quiet){message('\nYou do not have devtools installed, so I am doing that first.')}
@@ -44,6 +44,8 @@ git_it <- function(repo, quiet=F) {
 #' @description Try to load a package, and if you don't have it try to install it from CRAN instead.
 #' @param package The name of the package to try and load.
 cran_it <- function(package) {
-  if(!package %in% rownames(installed.packages())){install.packages(package)}
+  if(!package %in% rownames(utils::installed.packages())){
+    utils::install.packages(package)
+  }
   library(package, character.only=T)
 }
