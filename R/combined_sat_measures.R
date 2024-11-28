@@ -1,23 +1,21 @@
 
 #' @title Inverse efficiency score
 #'
-#' @description Calculate IES for a provided set of rts and pcs.
+#' @description Calculate IES.
 #' @param rt vector-like. The response time vector.
 #' @param pc vector-like. The 'percent correct' vector.
-#' @param places numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
-ies <- function(rt, pc){ return(rt/pc) }
+ies <- function(rt, pc) { return(rt/pc) }
 
 #' @title Rate correct score
 #'
-#' @description Calculate RCS for a provided set of rts and pcs.
+#' @description Calculate RCS.
 #' @param rt vector-like. The response time vector.
 #' @param pc vector-like. The 'percent correct' vector.
-#' @param places numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
-rcs <- function(rt, pc){ return(pc/sum(rt)) }
+rcs <- function(rt, pc) { return(pc/sum(rt)) }
 
 #' @title Linear integration score
 #'
-#' @description Calculate LISAS for a provided set of rts and pcs.
+#' @description Calculate LISAS.
 #' @param rt vector-like. The response time vector.
 #' @param pc vector-like. The 'percent correct' vector.
 lisas <- function(rt, pc){
@@ -30,7 +28,7 @@ lisas <- function(rt, pc){
 
 #' @title Balanced integration score
 #'
-#' @description Calculate BIS for a provided set of rts and pcs.
+#' @description Calculate BIS.
 #' @param rt vector-like. The response time vector.
 #' @param pc vector-like. The 'percent correct' vector.
 bis <- function(rt, pc){
@@ -44,23 +42,44 @@ bis <- function(rt, pc){
 
 #' @title Reward rate
 #'
-#' @description Calculate reward rate (Gold & Shadlen, 2002) for a provided set of rts and pcs.
+#' @description Calculate reward rate (Gold & Shadlen, 2002).
 #' @param rt vector-like. The response time vector.
 #' @param pc vector-like. The 'percent correct' vector.
-rr <- function(rt, pc){
+rr <- function(rt, pc) {
   out = pc / rt
   return(out)
 }
 
 #' @title Signed Residual Time
 #'
-#' @description Calculate signed residual time (Maris & van der Maas, 2012) for a provided set of rts and pcs.
-#' @param rt vector-like. The response time vector.
-#' @param pc vector-like. The 'percent correct' vector.
-srt <- function(rt, pc) {
-  X = 0
-  d = 0
-  T.pi = 0
-  out = (2 * X - 1) * (d - T.pi)
+#' @description Calculate signed residual time (Maris & van der Maas, 2012).
+#' @param score Numeric Vector // A vector of scores representing correct or incorrect.
+#' @param deadline Numeric Vector // A vector of deadline times, i.e. the time at which a response must have been given by.
+#' @param rt Numeric Vector // A vector of response times.
+srt <- function(score, deadline, rt) {
+  out = ((2*score) - 1) * (deadline - rt)
+  return(out)
+}
+
+#' @title Kill the Twin
+#'
+#' @description Perform a "kill the twin" procedure (Eriksen, 1988).
+#' @param rt Numeric Vector // A vector of response times.
+#' @param score Numeric Vector // A vector of scores representing correct or incorrect.
+#' @returns Returns a data frame of survivors after performing "kill the twin".
+ktt <- function(rt, score) {
+  correct.rts = rt[score == 1]
+  error.rts = rt[score == 0]
+  n.errors = length(error.rts)
+  to.remove = which(score == 0)
+  for (e in 1:n.errors) {
+    killer = error.rts[e]
+    n = which.min(abs(correct.rts - killer))
+    to.remove = c(to.remove, n)
+  }
+  out <- data.frame(
+    rt = rt[-to.remove],
+    score = score[-to.remove]
+  )
   return(out)
 }

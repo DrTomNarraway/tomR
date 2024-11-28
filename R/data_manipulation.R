@@ -87,3 +87,23 @@ return_data_from_jatos<-function(path, subject_col, outcome_col, rt_col, block_c
   d<-d[d$Subject != subject_col, colnames(d) %in% c('Subject', 'Group', 'Block', 'Trial', 'SAT', 'Deadline', 'Difficulty', 'Outcome', 'RT')]
   return(d)
 }
+
+#' @title Meanify
+#'
+#' @description Group and summarise a data.frame into a meanified version.
+#' @param ... The columns to group by.
+#' @param data The data.frame to meanify.
+#' @param rt.col The current name of the RT column. Will be renamed 'RT'.
+#' @param score.col The current name of the score column. Will become the 'PC' (percentage correct) column.
+meanify <- function(..., data, rt.col='RT', score.col='Score') {
+  out <- dplyr::group_by(.data=data, ...)
+  colnames(out)[colnames(out)==rt.col] <- 'RT'
+  colnames(out)[colnames(out)==score.col] <- 'Score'
+  out <- dplyr::summarise(
+    .data = out,
+    .groups = 'keep',
+    RT = mean(RT),
+    PC = mean(Score)
+  )
+  return(out)
+}
