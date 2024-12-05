@@ -5,7 +5,7 @@
 #' @param .data data.frame to act on.
 #' @returns Returns a vector of length nrow(data).
 return_bis_vector <- function(.data) {
-  .pars=c('drift','boundry')
+  .pars=c('drift','boundary')
   out = rep(NA,nrow(.data))
   # for each parameter par
   for (i in 1:length(.pars)) {
@@ -40,17 +40,17 @@ return_bis_vector <- function(.data) {
 #' @param .data data.frame to act on.
 #' @returns Returns a matrix of BIS values across possible parameter combinations.
 return_bis_matrix <- function(.data) {
-  pars = c('drift','boundry')
+  pars = c('drift','boundary')
   # gather parameter values
   drift.vals   = c(unique(.data[,'drift']))[[1]]
-  boundry.vals = c(unique(.data[,'boundry']))[[1]]
+  boundary.vals = c(unique(.data[,'boundary']))[[1]]
   # set up the matrices
-  drift.matrix   = matrix(NA,ncol=length(drift.vals),nrow=length(boundry.vals))
+  drift.matrix   = matrix(NA,ncol=length(drift.vals),nrow=length(boundary.vals))
   colnames(drift.matrix) = drift.vals
-  rownames(drift.matrix) = boundry.vals
-  boundry.matrix = matrix(NA,ncol=length(boundry.vals),nrow=length(drift.vals))
-  colnames(boundry.matrix) = boundry.vals
-  rownames(boundry.matrix) = drift.vals
+  rownames(drift.matrix) = boundary.vals
+  boundary.matrix = matrix(NA,ncol=length(boundary.vals),nrow=length(drift.vals))
+  colnames(boundary.matrix) = boundary.vals
+  rownames(boundary.matrix) = drift.vals
   # for each parameter par
   for (i in 1:length(pars)) {
     par        = pars[i]
@@ -76,10 +76,10 @@ return_bis_matrix <- function(.data) {
       bbo          = aggregate(bis~target,data=val.data,FUN=mean)$bis
       # append to matrix
       if (par=='drift')   drift.matrix[j,]   = bbo
-      if (par=='boundry') boundry.matrix[,j] = bbo
+      if (par=='boundary') boundary.matrix[,j] = bbo
     } # end of this value
   } # end of this parameter
-  out = list(drift=drift.matrix,boundry=boundry.matrix)
+  out = list(drift=drift.matrix,boundary=boundary.matrix)
   return(out)
 }
 
@@ -89,15 +89,15 @@ return_bis_matrix <- function(.data) {
 #' @param .data data.frame to act on.
 #' @returns Returns a list of parameters, with the absolute value of the bis score across the other parameter levels.
 return_bis_list <- function(.data) {
-  pars = c('drift','boundry')
+  pars = c('drift','boundary')
   # gather parameter values
   drift.vals   = c(unique(.data[,'drift']))[[1]]
-  boundry.vals = c(unique(.data[,'boundry']))[[1]]
+  boundary.vals = c(unique(.data[,'boundary']))[[1]]
   # set up the lists
-  drift.list          = rep(NA, length(boundry.vals))
-  names(drift.list)   = boundry.vals
-  boundry.list        = rep(NA, length(drift.vals))
-  names(boundry.list) = drift.vals
+  drift.list          = rep(NA, length(boundary.vals))
+  names(drift.list)   = boundary.vals
+  boundary.list        = rep(NA, length(drift.vals))
+  names(boundary.list) = drift.vals
   # for each parameter par
   for (i in 1:length(pars)) {
     par        = pars[i]
@@ -124,10 +124,10 @@ return_bis_list <- function(.data) {
       bbo.max      = max(bbo)
       # append to matrix
       if (par=='drift')   drift.list[j]   = bbo.max
-      if (par=='boundry') boundry.list[j] = bbo.max
+      if (par=='boundary') boundary.list[j] = bbo.max
     } # end of this value
   } # end of this parameter
-  out = list(drift=drift.list,boundry=boundry.list)
+  out = list(drift=drift.list,boundary=boundary.list)
   return(out)
 }
 
@@ -138,17 +138,17 @@ return_bis_list <- function(.data) {
 #' @returns Returns a matrix of bools showing if the outcome of the t-test was significant or not.
 return_tts <- function(.data) {
   if (!('bis') %in% colnames(.data)) return('bis col not found, please append first.')
-  pars = c('drift','boundry')
+  pars = c('drift','boundary')
   # set up drift rate matrix
   drift.vals = c(unique(.data[,'drift']))[[1]]
   drift.sigs = matrix(NA, ncol=3, nrow=length(drift.vals))
   rownames(drift.sigs) = drift.vals
   colnames(drift.sigs) = c("rt","pc","bis")
-  # set up boundry rate matrix
-  boundry.vals = c(unique(.data[,'boundry']))[[1]]
-  boundry.sigs = matrix(NA, ncol=3, nrow=length(boundry.vals))
-  rownames(boundry.sigs) = boundry.vals
-  colnames(boundry.sigs) = c("rt","pc","bis")
+  # set up boundary rate matrix
+  boundary.vals = c(unique(.data[,'boundary']))[[1]]
+  boundary.sigs = matrix(NA, ncol=3, nrow=length(boundary.vals))
+  rownames(boundary.sigs) = boundary.vals
+  colnames(boundary.sigs) = c("rt","pc","bis")
   # for each parameter par
   for (i in 1:length(pars)) {
     par = pars[i]
@@ -169,16 +169,16 @@ return_tts <- function(.data) {
         drift.sigs[j,'pc']  = pc.sig
         drift.sigs[j,'bis'] = bis.sig
       }
-      if (par=='boundry') {
-        boundry.sigs[j,'rt']  = rt.sig
-        boundry.sigs[j,'pc']  = pc.sig
-        boundry.sigs[j,'bis'] = bis.sig
+      if (par=='boundary') {
+        boundary.sigs[j,'rt']  = rt.sig
+        boundary.sigs[j,'pc']  = pc.sig
+        boundary.sigs[j,'bis'] = bis.sig
       }
     } # end of this value
   } # end of this parameter
   out <- list(
     drift.sigs    = drift.sigs,
-    boundry.sigs = boundry.sigs
+    boundary.sigs = boundary.sigs
   )
   return(out)
 }
