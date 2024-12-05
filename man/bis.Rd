@@ -12,5 +12,5 @@ bis(rt, pc)
 \item{pc}{vector-like. The 'percent correct' vector.}
 }
 \description{
-Calculate BIS for a provided set of rts and pcs.
+Calculate BIS.
 }

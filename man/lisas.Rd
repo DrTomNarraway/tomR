@@ -12,5 +12,5 @@ lisas(rt, pc)
 \item{pc}{vector-like. The 'percent correct' vector.}
 }
 \description{
-Calculate LISAS for a provided set of rts and pcs.
+Calculate LISAS.
 }

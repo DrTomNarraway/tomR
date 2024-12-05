@@ -10,9 +10,7 @@ rcs(rt, pc)
 \item{rt}{vector-like. The response time vector.}
 
 \item{pc}{vector-like. The 'percent correct' vector.}
-
-\item{places}{numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.}
 }
 \description{
-Calculate RCS for a provided set of rts and pcs.
+Calculate RCS.
 }

@@ -12,5 +12,5 @@ rr(rt, pc)
 \item{pc}{vector-like. The 'percent correct' vector.}
 }
 \description{
-Calculate reward rate (Gold & Shadlen, 2002) for a provided set of rts and pcs.
+Calculate reward rate (Gold & Shadlen, 2002).
 }

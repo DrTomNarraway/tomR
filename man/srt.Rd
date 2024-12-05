@@ -4,13 +4,15 @@
 \alias{srt}
 \title{Signed Residual Time}
 \usage{
-srt(rt, pc)
+srt(score, deadline, rt)
 }
 \arguments{
-\item{rt}{vector-like. The response time vector.}
+\item{score}{Numeric Vector // A vector of scores representing correct or incorrect.}
 
-\item{pc}{vector-like. The 'percent correct' vector.}
+\item{deadline}{Numeric Vector // A vector of deadline times, i.e. the time at which a response must have been given by.}
+
+\item{rt}{Numeric Vector // A vector of response times.}
 }
 \description{
-Calculate signed residual time (Maris & van der Maas, 2012) for a provided set of rts and pcs.
+Calculate signed residual time (Maris & van der Maas, 2012).
 }
