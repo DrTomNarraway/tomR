@@ -2,18 +2,13 @@
 #' @title Remove All Variables
 #'
 #' @description Remove all objects from the global environment except constants. A constant is any object with an entirely uppercase name.
-#' @param verbose List a bunch of stuff from the environment.
 #' @param exceptions A list of variables to be excepted from the rm command.
+#' @param verbose Should stuff be printed to the console or not?
 remove_variables <- function(exceptions=c(), verbose=F) {
-  all.objects = ls(globalenv())
-  if (verbose) {message('found ',all.objects)}
-  consts = c()
-  for (object in all.objects) {
-    if (object == toupper(object)) {consts = c(consts,object)}
-  }
-  to.remove = all.objects[!all.objects %in% consts & !all.objects %in% exceptions]
-  if (verbose) {message('removing ',to.remove)}
+  vars = ls()[ls()!=toupper(ls())]
+  to.remove = ls()[ls() %in% vars & !ls() %in% exceptions]
   remove(list=to.remove, envir=globalenv(), inherits=FALSE)
+  if (verbose) pride(vars,to.remove)
 }
 
 #' @title Backtrack Working Directory!

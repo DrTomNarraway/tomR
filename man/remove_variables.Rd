@@ -9,7 +9,7 @@ remove_variables(exceptions = c(), verbose = F)
 \arguments{
 \item{exceptions}{A list of variables to be excepted from the rm command.}
 
-\item{verbose}{List a bunch of stuff from the environment.}
+\item{verbose}{Should stuff be printed to the console or not?}
 }
 \description{
 Remove all objects from the global environment except constants. A constant is any object with an entirely uppercase name.
