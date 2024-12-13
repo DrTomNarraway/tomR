@@ -4,18 +4,15 @@
 \alias{lifesaver}
 \title{Lifesaver}
 \usage{
-lifesaver(
-  .object,
-  file,
-  warning = "File already found, I refuse to save. Do so manually if you must."
-)
+lifesaver(.object, file)
 }
 \arguments{
 \item{.object}{The R object to try and save.}
 
 \item{file}{The file path you want to save to.}
-
-\item{warning}{The warning message to display if a conflict occurs.}
+}
+\value{
+True if file was saved, false otherwise.
 }
 \description{
 Wrapper to prevent accidentally saving over a file that already exists.
