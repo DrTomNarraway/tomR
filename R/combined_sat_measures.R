@@ -19,8 +19,8 @@ rcs <- function(rt, pc) { return(pc/sum(rt)) }
 #' @param rt vector-like. The response time vector.
 #' @param pc vector-like. The 'percent correct' vector.
 lisas <- function(rt, pc){
-  rt.sd = sqrt(((length(rt)-1)/length(rt))*var(rt))
-  pc.sd = sqrt(((length(pc)-1)/length(pc))*var(pc))
+  rt.sd = sqrt(((length(rt)-1)/length(rt))*stats::var(rt))
+  pc.sd = sqrt(((length(pc)-1)/length(pc))*stats::var(pc))
   lisas.sd = rt.sd / pc.sd
   out = rt + lisas.sd * (1 - pc)
   return(out)

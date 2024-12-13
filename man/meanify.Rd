@@ -4,12 +4,12 @@
 \alias{meanify}
 \title{Meanify}
 \usage{
-meanify(..., data, rt.col = "RT", score.col = "Score")
+meanify(data, ..., rt.col = "RT", score.col = "Score")
 }
 \arguments{
-\item{...}{The columns to group by.}
-
 \item{data}{The data.frame to meanify.}
+
+\item{...}{The columns to group by.}
 
 \item{rt.col}{The current name of the RT column. Will be renamed 'RT'.}
 

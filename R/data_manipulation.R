@@ -35,7 +35,7 @@ return_data_from_jatos<-function(path, subject_col, outcome_col, rt_col, block_c
   } else {
     stop('The path you passed did not lead to a .csv or .txt file, or a folder.')
   }
-  r<-read.csv(file=p)
+  r<-utils::read.csv(file=p)
   d<-as.data.frame(r)
   # rename required columns
   colnames(d)[colnames(d)==subject_col]<-'Subject'
@@ -91,14 +91,14 @@ return_data_from_jatos<-function(path, subject_col, outcome_col, rt_col, block_c
 #' @title Meanify
 #'
 #' @description Group and summarise a data.frame into a meanified version.
-#' @param ... The columns to group by.
 #' @param data The data.frame to meanify.
+#' @param ... The columns to group by.
 #' @param rt.col The current name of the RT column. Will be renamed 'RT'.
 #' @param score.col The current name of the score column. Will become the 'PC' (percentage correct) column.
-meanify <- function(..., data, rt.col='RT', score.col='Score') {
+meanify <- function(data, ..., rt.col='RT', score.col='Score') {
   out <- dplyr::group_by(.data=data, ...)
-  colnames(out)[colnames(out)==rt.col] <- 'RT'
-  colnames(out)[colnames(out)==score.col] <- 'Score'
+  colnames(out)[colnames(out)==rt.col] = 'RT'
+  colnames(out)[colnames(out)==score.col] = 'Score'
   out <- dplyr::summarise(
     .data = out,
     .groups = 'keep',

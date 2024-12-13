@@ -49,3 +49,14 @@ load_or_do <- function(path, do, quiet=F) {
     do()
   }
 }
+
+#' @title Lifesaver
+#'
+#' @description Wrapper to prevent accidentally saving over a file that already exists.
+#' @param .object The R object to try and save.
+#' @param file The file path you want to save to.
+#' @param warning The warning message to display if a conflict occurs.
+lifesaver <- function(.object, file, warning='File already found, I refuse to save. Do so manually if you must.') {
+  if (file.exists(file)) dm(warning)
+  save(.object, file=file)
+}
