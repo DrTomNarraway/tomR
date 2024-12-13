@@ -49,3 +49,28 @@ cran_it <- function(package) {
   }
   library(package, character.only=T)
 }
+
+#' @title Check (g)it!
+#'
+#' @description Check the current version number of the entered repo.
+#' @param repo The name of the Github repository to check.
+#' @param verbose If true print lots of information to the console.
+#' @returns True if the latest github version and installed version match.
+check_git <- function(repo, verbose=F) {
+  user = strsplit(repo,'/')[[1]][1]
+  package = strsplit(repo,'/')[[1]][2]
+  package.installed <- package %in% rownames(utils::installed.packages())
+  gh.url <- sprintf("https://raw.githubusercontent.com/%s/master/DESCRIPTION",repo)
+  url.con <- url(gh.url)
+  github.version <- as.character(read.dcf(url.con, fields="Version"))
+  close(url.con)
+  if (package.installed) current.version <- installed.packages()[package,]['Version']
+  else current.version = '0'
+  if (verbose) {
+    print(paste0('The current version on git is ',github.version,'.'))
+    if (package.installed) print(paste0('You have version ',current.version,' installed.'))
+    else print(paste0('No installed version of this package was found.'))
+  }
+  if (github.version == current.version) return(T)
+  else return(F)
+}
