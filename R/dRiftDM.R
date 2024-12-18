@@ -34,3 +34,17 @@ quick.group.sim <- function(n=100, N=20) {
   out <- out[, c('ID','RT','Score')]
   return(out)
 }
+
+#' @title Drift Rate By Condition
+#'
+#' @description Function to calculate muc when it differs by condition.
+muc_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
+  return(rep(prms_model[paste0('muc_',one_cond)], length(t_vec)))
+}
+
+#' @title Boundary By Condition
+#'
+#' @description Function to calculate b when it differs by condition.
+b_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
+  return(rep(prms_model[paste0('b_',one_cond)], length(t_vec)))
+}

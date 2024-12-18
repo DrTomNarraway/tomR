@@ -103,3 +103,21 @@ translate_threshold <- function(t, ms_to_s=T, dps=3, quiet=F) {
   }
   return(out)
 }
+
+#' @title Standard Deviation from Correlation
+#'
+#' @description Calculate the between- or within-subjects standard deviation required to
+#'  reach the desired correlation. This works because r = b^2 / (b^2 + w^2), meaning
+#'  we can solve for either b or w to determine the desired standard deviation.
+#' @param sd Numeric // The known standard deviation, either between- or within-subjects.
+#' @param r Numeric // The desired correlation.
+#' @returns Numeric // The unknown standard deviation.
+sd_from_r <- function(sd, r) {return((sd * sqrt(r*(1-r))) / r)}
+
+#' @title Correlation from Standard Deviations
+#'
+#' @description Calculate the correlation of parameters given a known between- and within-subjects standard deviation.
+#' @param b Numeric // The known between-subjects standard deviation.
+#' @param w Numeric // The known within-subjects standard deviation.
+#' @returns Numeric // The correlation of parameters.
+r_from_sds <- function(b, w) {return(b^2 / (b^2 + w^2))}
