@@ -91,7 +91,7 @@ translate_threshold <- function(t, dps=3, ms_to_s=T, verbose=F) {
     out = threshold * time
   }
   if (dps > 0) out = round(out, dps)
-  if (!quiet) {
+  if (verbose) {
     pride(
       paste0('t = ',t),
       paste0('ms to seconds = ',ms_to_s),
