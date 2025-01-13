@@ -3,12 +3,10 @@
 #'
 #' @description Remove all objects from the global environment except constants. A constant is any object with an entirely uppercase name.
 #' @param exceptions A list of variables to be excepted from the rm command.
-#' @param verbose Should stuff be printed to the console or not?
-remove_variables <- function(exceptions=c(), verbose=F) {
+remove_variables <- function(exceptions=c()) {
   vars = ls()[ls()!=toupper(ls())]
   to.remove = ls()[ls() %in% vars & !ls() %in% exceptions]
   remove(list=to.remove, envir=globalenv(), inherits=FALSE)
-  if (verbose) pride(vars,to.remove)
 }
 
 #' @title Backtrack Working Directory!
@@ -26,4 +24,12 @@ backtrack_wd <- function(target, verbose=F) {
   }
   setwd(new.wd)
   if (verbose) message('working directory is now ',getwd())
+}
+
+#' @title Add Test Objects
+#'
+#' @description Add a few test objects to the global environment for quick testing.
+add_test_objects <- function() {
+  list = list(a='a',A='A',b=0,B=1,c=T,C=F,d=NaN,D=1,e=Inf,E=10)
+  list2env(list, envir=globalenv())
 }

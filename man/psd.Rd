@@ -4,14 +4,14 @@
 \alias{psd}
 \title{Percentage Standard Deviation}
 \usage{
-psd(value, dps = 3, quiet = F)
+psd(value, dps = 3, verbose = F)
 }
 \arguments{
 \item{value}{numeric. Percentage from which the SD should be calculated.}
 
-\item{dps}{numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.}
+\item{dps}{numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.}
 
-\item{quiet}{bool, default = false. If quiet do not print stuff to console.}
+\item{verbose}{bool, default = false // Should stuff be printed to the console or not.}
 }
 \description{
 Calculate the standard deviation of a percentage/mean value.

@@ -7,12 +7,12 @@
 sd_from_r(sd, r)
 }
 \arguments{
-\item{sd}{Numeric // The known standard deviation, either between- or within-subjects.}
+\item{sd}{numeric // The known standard deviation, either between- or within-subjects.}
 
-\item{r}{Numeric // The desired correlation.}
+\item{r}{numeric // The desired correlation.}
 }
 \value{
-Numeric // The unknown standard deviation.
+numeric // The unknown standard deviation.
 }
 \description{
 Calculate the between- or within-subjects standard deviation required to

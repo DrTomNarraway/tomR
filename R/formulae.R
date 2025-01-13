@@ -20,15 +20,15 @@ ssd <- function(sample, places=3) {
 #'
 #' @description Calculate the standard deviation of a percentage/mean value.
 #' @param value numeric. Percentage from which the SD should be calculated.
-#' @param dps numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
-#' @param quiet bool, default = false. If quiet do not print stuff to console.
-psd <- function(value, dps=3, quiet=F){
+#' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
+#' @param verbose bool, default = false // Should stuff be printed to the console or not.
+psd <- function(value, dps=3, verbose=F){
   x    = value
   sqrd = value ^ 2
   xmsq = x - sqrd
   out  = sqrt( xmsq )
   if (dps > 0) out = round(out, dps)
-  if (!quiet) {
+  if (verbose) {
     pride(
       paste0('value = ',value),
       paste0('value ^ 2 = ',sqrd),
@@ -44,10 +44,10 @@ psd <- function(value, dps=3, quiet=F){
 #'
 #' @description Translate drift rate with sigma = 4 in ms to sigma = 1 in seconds.
 #' @param d numeric. The original drift rate to be converted.
-#' @param ms_to_s bool, default = true. If true convert from ms to seconds.
-#' @param dps numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
-#' @param quiet bool, default = false. If quiet do not print stuff to console.
-translate_drift <- function(d, ms_to_s=T, dps=3, quiet=F) {
+#' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
+#' @param ms_to_s bool, default = true // If true convert from ms to seconds.
+#' @param verbose bool, default = false // Should stuff be printed to the console or not?
+translate_drift <- function(d, dps=3, ms_to_s=T, verbose=F) {
   if (ms_to_s) {
     drift = d / 4
     time = 1000 / sqrt(1000)
@@ -59,7 +59,7 @@ translate_drift <- function(d, ms_to_s=T, dps=3, quiet=F) {
     out = drift / time
   }
   if (dps > 0) out = round(out, dps)
-  if (!quiet) {
+  if (verbose) {
     pride(
       paste0('d = ',d),
       paste0('ms to seconds = ',ms_to_s),
@@ -75,11 +75,11 @@ translate_drift <- function(d, ms_to_s=T, dps=3, quiet=F) {
 #' @title Translate Threshold
 #'
 #' @description Translate threshold with sigma = 4 in ms to sigma = 1 in seconds.
-#' @param t numeric. The original threshold to be converted.
-#' @param ms_to_s bool, default = true. If true convert from ms to seconds.
-#' @param dps numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
-#' @param quiet bool, default = false. If quiet do not print stuff to console.
-translate_threshold <- function(t, ms_to_s=T, dps=3, quiet=F) {
+#' @param t numeric // The original threshold to be converted.
+#' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
+#' @param ms_to_s bool, default = true // If true convert from ms to seconds.
+#' @param verbose bool, default = false // Should stuff be printed to the console or not?
+translate_threshold <- function(t, dps=3, ms_to_s=T, verbose=F) {
   if (ms_to_s) {
     threshold <- t / 4
     time = sqrt(1000)
@@ -109,9 +109,9 @@ translate_threshold <- function(t, ms_to_s=T, dps=3, quiet=F) {
 #' @description Calculate the between- or within-subjects standard deviation required to
 #'  reach the desired correlation. This works because r = b^2 / (b^2 + w^2), meaning
 #'  we can solve for either b or w to determine the desired standard deviation.
-#' @param sd Numeric // The known standard deviation, either between- or within-subjects.
-#' @param r Numeric // The desired correlation.
-#' @returns Numeric // The unknown standard deviation.
+#' @param sd numeric // The known standard deviation, either between- or within-subjects.
+#' @param r numeric // The desired correlation.
+#' @returns numeric // The unknown standard deviation.
 sd_from_r <- function(sd, r) {return((sd * sqrt(r*(1-r))) / r)}
 
 #' @title Correlation from Standard Deviations

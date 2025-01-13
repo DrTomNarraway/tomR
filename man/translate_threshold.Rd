@@ -4,16 +4,16 @@
 \alias{translate_threshold}
 \title{Translate Threshold}
 \usage{
-translate_threshold(t, ms_to_s = T, dps = 3, quiet = F)
+translate_threshold(t, dps = 3, ms_to_s = T, verbose = F)
 }
 \arguments{
-\item{t}{numeric. The original threshold to be converted.}
+\item{t}{numeric // The original threshold to be converted.}
 
-\item{ms_to_s}{bool, default = true. If true convert from ms to seconds.}
+\item{dps}{numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.}
 
-\item{dps}{numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.}
+\item{ms_to_s}{bool, default = true // If true convert from ms to seconds.}
 
-\item{quiet}{bool, default = false. If quiet do not print stuff to console.}
+\item{verbose}{bool, default = false // Should stuff be printed to the console or not?}
 }
 \description{
 Translate threshold with sigma = 4 in ms to sigma = 1 in seconds.

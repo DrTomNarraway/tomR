@@ -4,16 +4,16 @@
 \alias{translate_drift}
 \title{Translate Drift Rate}
 \usage{
-translate_drift(d, ms_to_s = T, dps = 3, quiet = F)
+translate_drift(d, dps = 3, ms_to_s = T, verbose = F)
 }
 \arguments{
 \item{d}{numeric. The original drift rate to be converted.}
 
-\item{ms_to_s}{bool, default = true. If true convert from ms to seconds.}
+\item{dps}{numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.}
 
-\item{dps}{numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.}
+\item{ms_to_s}{bool, default = true // If true convert from ms to seconds.}
 
-\item{quiet}{bool, default = false. If quiet do not print stuff to console.}
+\item{verbose}{bool, default = false // Should stuff be printed to the console or not?}
 }
 \description{
 Translate drift rate with sigma = 4 in ms to sigma = 1 in seconds.
