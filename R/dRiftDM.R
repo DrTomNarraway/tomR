@@ -38,13 +38,61 @@ quick.group.sim <- function(n=100, N=20) {
 #' @title Drift Rate By Condition
 #'
 #' @description Function to calculate muc when it differs by condition.
+#' #' @return A vector of length t_vec containing muc from prms_model based on one_cond.
 muc_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
-  return(rep(prms_model[paste0('muc_',one_cond)], length(t_vec)))
+  return(rep(prms_model[paste0('muc',one_cond)], length(t_vec)))
+}
+
+#' @title Fixed Drift Rate
+#'
+#' @description Function to calculate muc when it is fixed across conditions.
+#' @return A vector of length t_vec containing muc from prms_model.
+muc_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
+  return(rep(prms_model[["muc"]], length(t_vec)))
 }
 
 #' @title Boundary By Condition
 #'
 #' @description Function to calculate b when it differs by condition.
+#' @return A vector of length t_vec containing b from prms_model based on one_cond.
 b_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
-  return(rep(prms_model[paste0('b_',one_cond)], length(t_vec)))
+  return(rep(prms_model[paste0('b',one_cond)], length(t_vec)))
+}
+
+#' @title Fixed Boundary
+#'
+#' @description Function to calculate b when it is fixed across conditions.
+#' @return A vector of length t_vec containing b from prms_model.
+b_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
+  return(rep(prms_model[["b"]], length(t_vec)))
+}
+
+#' @title Non-Decision Time by Cond
+#'
+#' @description Function to calculate non-decision time when it is fixed across conditions.
+#' @return A vector of length t_vec containing non_dec from prms_model.
+non_dec_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
+  non_dec = prms_model[paste0('non_dec',one_cond)]
+  tmax = prms_solve[["t_max"]]
+  dt = prms_solve[["dt"]]
+  dt = prms_solve[["dt"]]
+  d_nt = numeric(length(t_vec))
+  which_index = as.integer(non_dec/dt)
+  d_nt[which_index + 1] = 1/dt
+  return(d_nt)
+}
+
+#' @title Fixed Non-Decision Time
+#'
+#' @description Function to calculate non-decision time when it is fixed across conditions.
+#' @return A vector of length t_vec containing non_dec from prms_model.
+non_dec_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
+  non_dec = prms_model[["non_dec"]]
+  tmax = prms_solve[["t_max"]]
+  dt = prms_solve[["dt"]]
+  dt = prms_solve[["dt"]]
+  d_nt = numeric(length(t_vec))
+  which_index = as.integer(non_dec/dt)
+  d_nt[which_index + 1] = 1/dt
+  return(d_nt)
 }

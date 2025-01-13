@@ -6,6 +6,9 @@
 \usage{
 b_by_cond(prms_model, prms_solve, t_vec, one_cond, ddm_opts)
 }
+\value{
+A vector of length t_vec containing b from prms_model based on one_cond.
+}
 \description{
 Function to calculate b when it differs by condition.
 }

@@ -8,4 +8,5 @@ muc_by_cond(prms_model, prms_solve, t_vec, one_cond, ddm_opts)
 }
 \description{
 Function to calculate muc when it differs by condition.
+#' @return A vector of length t_vec containing muc from prms_model based on one_cond.
 }
