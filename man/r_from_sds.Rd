@@ -7,12 +7,12 @@
 r_from_sds(b, w)
 }
 \arguments{
-\item{b}{Numeric // The known between-subjects standard deviation.}
+\item{b}{numeric // The known between-subjects standard deviation.}
 
-\item{w}{Numeric // The known within-subjects standard deviation.}
+\item{w}{numeric // The known within-subjects standard deviation.}
 }
 \value{
-Numeric // The correlation of parameters.
+numeric // The correlation of parameters.
 }
 \description{
 Calculate the correlation of parameters given a known between- and within-subjects standard deviation.

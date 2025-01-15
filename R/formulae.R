@@ -117,7 +117,19 @@ sd_from_r <- function(sd, r) {return((sd * sqrt(r*(1-r))) / r)}
 #' @title Correlation from Standard Deviations
 #'
 #' @description Calculate the correlation of parameters given a known between- and within-subjects standard deviation.
-#' @param b Numeric // The known between-subjects standard deviation.
-#' @param w Numeric // The known within-subjects standard deviation.
-#' @returns Numeric // The correlation of parameters.
+#' @param b numeric // The known between-subjects standard deviation.
+#' @param w numeric // The known within-subjects standard deviation.
+#' @returns numeric // The correlation of parameters.
 r_from_sds <- function(b, w) {return(b^2 / (b^2 + w^2))}
+
+#' @title Z (Standardize Variable)
+#'
+#' @description Standardize a variable to allow easy comparison with other standardized variables.
+#' @param sample numeric vector // The variable to standardize.
+#' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
+#' @return numeric vector // The standardized vector.
+Z <- function(sample, dps=0) {
+  out = (sample-mean(sample))/sd(sample)
+  if (dps > 0) out = round(out, dps)
+  return(out)
+}
