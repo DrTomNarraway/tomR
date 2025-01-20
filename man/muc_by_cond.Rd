@@ -6,7 +6,20 @@
 \usage{
 muc_by_cond(prms_model, prms_solve, t_vec, one_cond, ddm_opts)
 }
+\arguments{
+\item{prms_model}{list // One row of prms_matrix or df_prms.}
+
+\item{prms_solve}{list // The parameters relevant for deriving the PDFs.}
+
+\item{t_vec}{list // Time space, from 0 to t_max with length nt + 1.}
+
+\item{one_cond}{single character string // Indicates the current condition.}
+
+\item{ddm_opts}{Additional arguments to pass to deeper dRiftDM calls.}
+}
+\value{
+A vector of length t_vec containing muc from prms_model based on one_cond.
+}
 \description{
 Function to calculate muc when it differs by condition.
-#' @return A vector of length t_vec containing muc from prms_model based on one_cond.
 }

@@ -1,44 +1,13 @@
 
-#' @title Quick Subject Simulation
-#'
-#' @description Perform a very quick simulation of one subject using dRiftDM.
-#' @param n The number of trials to simulate.
-#' @returns Returns a data frame with columns 'rt' and 'correct'.
-quick.subject.sim <- function(n=100) {
-  model <- dRiftDM::ratcliff_dm()
-  out <- dRiftDM::simulate_data(model, n)
-  out$Score[out$Error==0] <- 1
-  out$Score[out$Error==1] <- 0
-  out <- out[, c('RT','Score')]
-  return(out)
-}
-
-#' @title Quick Group Simulation
-#'
-#' @description Perform a very quick simulation of one subject using dRiftDM.
-#' @param n The number of trials to simulate per subject
-#' @param N the number of subjects to simulate.
-#' @returns Returns a data frame with columns 'ID','RT', and 'Score'.
-quick.group.sim <- function(n=100, N=20) {
-  model <- dRiftDM::ratcliff_dm()
-  model <- dRiftDM::set_solver_settings(model, c(dx=0.005, dt=0.005))
-  df_prms <- data.frame(
-    muc = rep(model$prms_model['muc'], N),
-    b = rep(model$prms_model['b'], N),
-    non_dec = rep(model$prms_model['non_dec'], N),
-    ID = 1:N
-  )
-  out <- dRiftDM::simulate_data(model, n, df_prms=df_prms)
-  out$Score[out$Error==0] <- 1
-  out$Score[out$Error==1] <- 0
-  out <- out[, c('ID','RT','Score')]
-  return(out)
-}
-
 #' @title Drift Rate By Condition
 #'
 #' @description Function to calculate muc when it differs by condition.
-#' #' @return A vector of length t_vec containing muc from prms_model based on one_cond.
+#' @param prms_model list // One row of prms_matrix or df_prms.
+#' @param prms_solve list // The parameters relevant for deriving the PDFs.
+#' @param t_vec list // Time space, from 0 to t_max with length nt + 1.
+#' @param one_cond single character string // Indicates the current condition.
+#' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
+#' @return A vector of length t_vec containing muc from prms_model based on one_cond.
 muc_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
   return(rep(prms_model[paste0('muc',one_cond)], length(t_vec)))
 }
@@ -46,6 +15,11 @@ muc_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
 #' @title Fixed Drift Rate
 #'
 #' @description Function to calculate muc when it is fixed across conditions.
+#' @param prms_model list // One row of prms_matrix or df_prms.
+#' @param prms_solve list // The parameters relevant for deriving the PDFs.
+#' @param t_vec list // Time space, from 0 to t_max with length nt + 1.
+#' @param one_cond single character string // Indicates the current condition.
+#' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing muc from prms_model.
 muc_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
   return(rep(prms_model[["muc"]], length(t_vec)))
@@ -54,6 +28,11 @@ muc_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
 #' @title Boundary By Condition
 #'
 #' @description Function to calculate b when it differs by condition.
+#' @param prms_model list // One row of prms_matrix or df_prms.
+#' @param prms_solve list // The parameters relevant for deriving the PDFs.
+#' @param t_vec list // Time space, from 0 to t_max with length nt + 1.
+#' @param one_cond single character string // Indicates the current condition.
+#' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing b from prms_model based on one_cond.
 b_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
   return(rep(prms_model[paste0('b',one_cond)], length(t_vec)))
@@ -62,6 +41,11 @@ b_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
 #' @title Fixed Boundary
 #'
 #' @description Function to calculate b when it is fixed across conditions.
+#' @param prms_model list // One row of prms_matrix or df_prms.
+#' @param prms_solve list // The parameters relevant for deriving the PDFs.
+#' @param t_vec list // Time space, from 0 to t_max with length nt + 1.
+#' @param one_cond single character string // Indicates the current condition.
+#' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing b from prms_model.
 b_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
   return(rep(prms_model[["b"]], length(t_vec)))
@@ -70,6 +54,11 @@ b_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
 #' @title Non-Decision Time by Cond
 #'
 #' @description Function to calculate non-decision time when it is fixed across conditions.
+#' @param prms_model list // One row of prms_matrix or df_prms.
+#' @param prms_solve list // The parameters relevant for deriving the PDFs.
+#' @param t_vec list // Time space, from 0 to t_max with length nt + 1.
+#' @param one_cond single character string // Indicates the current condition.
+#' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing non_dec from prms_model.
 non_dec_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
   non_dec = prms_model[paste0('non_dec',one_cond)]
@@ -85,6 +74,11 @@ non_dec_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
 #' @title Fixed Non-Decision Time
 #'
 #' @description Function to calculate non-decision time when it is fixed across conditions.
+#' @param prms_model list // One row of prms_matrix or df_prms.
+#' @param prms_solve list // The parameters relevant for deriving the PDFs.
+#' @param t_vec list // Time space, from 0 to t_max with length nt + 1.
+#' @param one_cond single character string // Indicates the current condition.
+#' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing non_dec from prms_model.
 non_dec_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
   non_dec = prms_model[["non_dec"]]

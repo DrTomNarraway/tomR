@@ -129,7 +129,7 @@ r_from_sds <- function(b, w) {return(b^2 / (b^2 + w^2))}
 #' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
 #' @return numeric vector // The standardized vector.
 Z <- function(sample, dps=0) {
-  out = (sample-mean(sample))/sd(sample)
+  out = (sample-mean(sample))/stats::sd(sample)
   if (dps > 0) out = round(out, dps)
   return(out)
 }
