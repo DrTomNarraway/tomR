@@ -4,12 +4,12 @@
 \alias{r_from_sds}
 \title{Correlation from Standard Deviations}
 \usage{
-r_from_sds(b, w)
+r_from_sds(subject.sd, cond.sd)
 }
 \arguments{
-\item{b}{numeric // The known between-subjects standard deviation.}
+\item{subject.sd}{numeric // The known between-subjects standard deviation.}
 
-\item{w}{numeric // The known within-subjects standard deviation.}
+\item{cond.sd}{numeric // The known within-subjects standard deviation.}
 }
 \value{
 numeric // The correlation of parameters.
