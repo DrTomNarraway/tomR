@@ -104,23 +104,29 @@ translate_threshold <- function(t, dps=3, ms_to_s=T, verbose=F) {
   return(out)
 }
 
-#' @title Standard Deviation from Correlation
-#'
-#' @description Calculate the between- or within-subjects standard deviation required to
-#'  reach the desired correlation. This works because r = b^2 / (b^2 + w^2), meaning
-#'  we can solve for either b or w to determine the desired standard deviation.
-#' @param sd numeric // The known standard deviation, either between- or within-subjects.
-#' @param r numeric // The desired correlation.
-#' @returns numeric // The unknown standard deviation.
-sd_from_r <- function(sd, r) {return((sd * sqrt(r*(1-r))) / r)}
-
 #' @title Correlation from Standard Deviations
 #'
 #' @description Calculate the correlation of parameters given a known between- and within-subjects standard deviation.
-#' @param b numeric // The known between-subjects standard deviation.
-#' @param w numeric // The known within-subjects standard deviation.
+#' @param subject.sd numeric // The known between-subjects standard deviation.
+#' @param cond.sd numeric // The known within-subjects standard deviation.
 #' @returns numeric // The correlation of parameters.
-r_from_sds <- function(b, w) {return(b^2 / (b^2 + w^2))}
+r_from_sds <- function(subject.sd, cond.sd) {return(subject.sd^2 / (subject.sd^2 + cond.sd^2))}
+
+#' @title SD(Cond) from Correlation
+#'
+#' @description Calculate the condition-level standard deviation required to reach the desired correlation.
+#' @param sd numeric // The known standard deviation, either between- or within-subjects.
+#' @param r numeric // The desired correlation.
+#' @returns numeric // The unknown standard deviation.
+sd.cond_from_r <- function(subject.sd, r) {return((subject.sd * sqrt(r*(1-r))) / r)}
+
+#' @title SD(Subject) from Correlation
+#'
+#' @description Calculate the subject-level standard deviation required to reach the desired correlation.
+#' @param sd numeric // The known standard deviation, either between- or within-subjects.
+#' @param r numeric // The desired correlation.
+#' @returns numeric // The unknown standard deviation.
+sd.subject_from_r <- function(cond.sd, r) {return(return((cond.sd * sqrt(r*(1-r))) / (1-r)))}
 
 #' @title Z (Standardize Variable)
 #'
