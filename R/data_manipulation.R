@@ -9,85 +9,6 @@ return_rounded_seconds<-function(milliseconds, dp=3){
   return(round(milliseconds/1000, dp))
 }
 
-#' @title Jatos to Data
-#'
-#' @description Convert the messy JATOS csv file to a standardized data frame.
-#' @param path Path to the folder where the JATOS file is stored. Used to find the first available file with 'jatos_results' in the title.
-#' @param subject_col The current name of the subject column.
-#' @param outcome_col The current name of the outcome / accuracy column.
-#' @param rt_col The current name of the response time column.
-#' @param block_col Optional. The current name of the block number or id column.
-#' @param deadline_col Optional. The Current name of the deadline column.
-#' @param difficulty_col Optional. The current name of the difficulty column.
-#' @param group_col Optional. The current name of the between-subjects ID column.
-#' @param sat_col Optional. The current name of the speed-accuracy within-subjects ID column.
-#' @param trial_col Optional. The current name of the trial number column.
-#' @param sat_conditions Optional. List to rename SAT conditions from their internal names to more useful ones. Must be listed in format 'current'='new'.
-#' @returns A data frame with columns Subject, Outcome, and RT, which optimally includes Group, Block, Trial, SAT, Deadline, Difficulty.
-return_data_from_jatos<-function(path, subject_col, outcome_col, rt_col, block_col='', deadline_col='', difficulty_col='', group_col='', sat_col='', sat_conditions=list(), trial_col=''){
-  if (substr(path, nchar(path)-3, nchar(path)) %in% c('.csv','.txt')) {
-    p <- path
-  } else if (substr(path, nchar(path), nchar(path)) == '/') {
-    files <- list.files(path)[grep('results', list.files(path))]
-    target <- files[grep('jatos', files)]
-    p <- paste0(path,target)
-    message(paste0('Your path lead to a folder so I am assuming you want this file: ',target))
-  } else {
-    stop('The path you passed did not lead to a .csv or .txt file, or a folder.')
-  }
-  r<-utils::read.csv(file=p)
-  d<-as.data.frame(r)
-  # rename required columns
-  colnames(d)[colnames(d)==subject_col]<-'Subject'
-  d$Subject<-as.character(d$Subject)
-  colnames(d)[colnames(d)==outcome_col]<-'Outcome'
-  d$Outcome<-as.numeric(d$Outcome)
-  colnames(d)[colnames(d)==rt_col]<-'RT'
-  d$RT<-as.numeric(d$RT)
-  # rename provided optional columns
-  if (group_col != '') {
-    message(paste0('Changing the column name ',group_col,' to Group.'))
-    colnames(d)[colnames(d)==group_col]<-'Group'
-    d$Group<-as.character(d$Group)
-  }
-  if (block_col != '') {
-    message(paste0('Changing the column name ',block_col,' to Block.'))
-    colnames(d)[colnames(d)==block_col]<-'Block'
-    d$Block<-as.numeric(d$Block)
-  }
-  if (sat_col != '') {
-    message(paste0('Changing the column name ',sat_col,' to SAT.'))
-    colnames(d)[colnames(d)==sat_col]<-'SAT'
-    d$SAT<-as.character(d$SAT)
-  }
-  if (deadline_col != '') {
-    message(paste0('Changing the column name ',deadline_col,' to Deadline.'))
-    colnames(d)[colnames(d)==deadline_col]<-'Deadline'
-    d$Deadline<-round(as.numeric(d$Deadline),3)
-  }
-  if (difficulty_col != '') {
-    message(paste0('Changing the column name ',difficulty_col,' to Difficulty.'))
-    colnames(d)[colnames(d)==difficulty_col]<-'Difficulty'
-    d$Difficulty<-as.numeric(d$Difficulty)
-  }
-  if (trial_col != '') {
-    message(paste0('Changing the column name ',trial_col,' to Trial.'))
-    colnames(d)[colnames(d)==trial_col]<-'Trial'
-    d$Trial<-as.numeric(d$Trial)
-  }
-  # process optional renaming of sat conditions
-  if (length(sat_conditions) > 0) {
-    for(i in 1:length(sat_conditions)) {
-      old_cond<-names(sat_conditions[i])
-      new_cond<-sat_conditions[[i]]
-      d$SAT[d$SAT == old_cond]<-new_cond
-    }
-  } else { d$SAT<-as.character(d$SAT) }
-  # return final data frame
-  d<-d[d$Subject != subject_col, colnames(d) %in% c('Subject', 'Group', 'Block', 'Trial', 'SAT', 'Deadline', 'Difficulty', 'Outcome', 'RT')]
-  return(d)
-}
-
 #' @title Meanify
 #'
 #' @description Group and summarise a data.frame into a meanified version.
@@ -106,4 +27,48 @@ meanify <- function(data, ..., rt.col='RT', score.col='Score') {
     PC = mean(Score)
   )
   return(out)
+}
+
+#' @title Create Significance Matrix
+#'
+#' @description Create a matrix counting the number of positive t-tests.
+#' @param data data.frame // The data.
+#' @param dim string // The variable to form the matrix from, i.e. the 'sides'.
+#' @param diag string // The variable to vary above and below the diagonal line.
+#' @param over string // The variable to loop over while counting number of significant tests.
+#' @param var string // The variable to perform t-tests on.
+#' @param alpha numeric, default = 0.05 // The alpha value to use for the t-tests.
+create_sig_matrix <- function(data, dim, diag, over, var, alpha=0.05) {
+  if (is.null(data[[dim]])) stop('Matrix dimension not found in data.frame provided.')
+  if (is.null(data[[diag]])) stop('Diagonal dimension not found in data.frame provided.')
+  if (is.null(data[[over]])) stop('Variable for looping over not found in data.frame provided.')
+  if (is.null(data[[var]])) stop('Variable for t.tests not found in data.frame provided.')
+  overs = unique(data[[over]])
+  n.overs = as.numeric(length(overs))
+  dims = unique(data[[dim]])
+  len = length(dims)
+  matrix = matrix(0,nrow=len,ncol=len)
+  colnames(matrix) = rownames(matrix) = dims
+  diags = unique(data[[diag]])
+  if (length(diags)!=2) stop('Incorrect number of diagonal variables.')
+  for (x in 1:len) {
+    dim1 = dims[x]
+    for  (y in 1:len) {
+      if (x == y) {
+        matrix[y,x] = '-'
+        next
+      }
+      if (x > y) dg = diags[2]
+      if (x < y) dg = diags[1]
+      dim2 = dims[y]
+      sigs = 0
+      for (ovr in 1:n.overs) {
+        rows = data[[dim]]%in%c(dim1,dim2) & data[[diag]]==dg & data[[over]]==ovr
+        t.test = t.test(data[[var]][rows] ~ data[[dim]][rows], data=data[rows, ])
+        if (t.test$p.value <= alpha) sigs = sigs + 1
+      }
+      matrix[y,x] = sigs
+    }
+  }
+  return(matrix)
 }

@@ -4,12 +4,12 @@
 \alias{sd.subject_from_r}
 \title{SD(Subject) from Correlation}
 \usage{
-sd.subject_from_r(cond.sd, r)
+sd.subject_from_r(sd, r)
 }
 \arguments{
-\item{r}{numeric // The desired correlation.}
-
 \item{sd}{numeric // The known standard deviation, either between- or within-subjects.}
+
+\item{r}{numeric // The desired correlation.}
 }
 \value{
 numeric // The unknown standard deviation.

@@ -1,7 +1,7 @@
 Package: tomR
 Type: Package
 Title: Tom R
-Version: 0.23.0.9000
+Version: 0.24.0
 Author: Dr Tom Narraway
 Maintainer: Dr Tom Narraway <tomax591.de@gmail.com>
 Description: A personal R package to reduce the amount of times I need to write the exact same lines of code.
@@ -12,7 +12,8 @@ RoxygenNote: 7.3.2
 Imports: 
     devtools,
     dplyr,
-    dRiftDM,
+    gridExtra,
+    gtable,
     stats,
     utils
 Depends: 

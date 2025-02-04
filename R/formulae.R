@@ -118,7 +118,7 @@ r_from_sds <- function(subject.sd, cond.sd) {return(subject.sd^2 / (subject.sd^2
 #' @param sd numeric // The known standard deviation, either between- or within-subjects.
 #' @param r numeric // The desired correlation.
 #' @returns numeric // The unknown standard deviation.
-sd.cond_from_r <- function(subject.sd, r) {return((subject.sd * sqrt(r*(1-r))) / r)}
+sd.cond_from_r <- function(sd, r) {return((sd * sqrt(r*(1-r))) / r)}
 
 #' @title SD(Subject) from Correlation
 #'
@@ -126,7 +126,7 @@ sd.cond_from_r <- function(subject.sd, r) {return((subject.sd * sqrt(r*(1-r))) /
 #' @param sd numeric // The known standard deviation, either between- or within-subjects.
 #' @param r numeric // The desired correlation.
 #' @returns numeric // The unknown standard deviation.
-sd.subject_from_r <- function(cond.sd, r) {return(return((cond.sd * sqrt(r*(1-r))) / (1-r)))}
+sd.subject_from_r <- function(sd, r) {return(return((sd * sqrt(r*(1-r))) / (1-r)))}
 
 #' @title Z (Standardize Variable)
 #'
