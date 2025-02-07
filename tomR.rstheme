@@ -1,0 +1,21 @@
+/* rs-theme-name: tomR */
+/* rs-theme-is-dark: TRUE */
+
+.ace_active-line { background: #202020; } /* current line is light grey */
+
+.ace_comment { color: #505050; } /* comments are dark grey */
+
+.ace_constant, .ace_constant.ace_language { color: #B200FF; } /* T, F, NULL, NA, etc are purple */
+
+.ace_constant.ace_numeric, .ace_string { color: #FF7FED; } /* strings and numebers are pink */
+
+.ace_cursor { border-left: 2px solid #505050; } /* the cursor is light grey */
+
+/* the background is black, text is off-white */
+.ace_editor, .ace_editor_theme .profvis-flamegraph, .ace_editor_theme { background-color: #101010; color: #C0C0C0; }
+
+.ace_function { color: #FF006E; } /* function calls are hot pink */
+
+.ace_keyword { color: #7FC9FF; } /* if, else, stop and other keywords are blue */
+
+.ace_selection { background: #303030; } /* selected text is light grey */
