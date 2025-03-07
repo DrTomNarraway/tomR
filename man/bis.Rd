@@ -7,10 +7,10 @@
 bis(rt, pc)
 }
 \arguments{
-\item{rt}{vector-like. The response time vector.}
+\item{rt}{Numeric vector of response times.}
 
-\item{pc}{vector-like. The 'percent correct' vector.}
+\item{pc}{Numeric vector of proportion correct scores.}
 }
 \description{
-Calculate BIS.
+Calculate BIS () for a given block.
 }

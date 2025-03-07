@@ -2,15 +2,18 @@
 % Please edit documentation in R/combined_sat_measures.R
 \name{rr}
 \alias{rr}
-\title{Reward rate}
+\title{Reward rate (Trial)}
 \usage{
-rr(rt, pc)
+rr(rt, nc)
 }
 \arguments{
-\item{rt}{vector-like. The response time vector.}
+\item{rt}{Vector of response times, one per trial.}
 
-\item{pc}{vector-like. The 'percent correct' vector.}
+\item{nc}{Vector indicating the outcome of the trial.}
+}
+\value{
+Vector of length(rt) indicating the reward rate.
 }
 \description{
-Calculate reward rate (Gold & Shadlen, 2002).
+Calculate reward rate (Gold & Shadlen, 2002) for each provided trial.
 }

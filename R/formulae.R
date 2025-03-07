@@ -139,3 +139,19 @@ Z <- function(sample, dps=0) {
   if (dps > 0) out = round(out, dps)
   return(out)
 }
+
+#' @title Cohen's D
+#'
+#' @description Calculate Cohen's d from the provided variables.
+#' @param x Numeric vector of data from population x.
+#' @param y Numeric vector of data from population y.
+#' @param paired Bool indicating if the populations are paired or independent.
+#' Paired populations have Cohen's recommended correction for Pearson's r automatically applied.
+#' @return The calculated d parameter, automatically correct for Pearson's r when required.
+cohens_d <- function(x, y, paired=F) {
+  t = stats::t.test(x, y, paired=paired)$statistic
+  N = stats::t.test(x, y, paired=paired)$parameter + 1
+  d = t / sqrt(N)
+  if (paired) d = d / sqrt(1-stats::cor(x,y))
+  return(d)
+}

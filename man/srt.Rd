@@ -2,17 +2,17 @@
 % Please edit documentation in R/combined_sat_measures.R
 \name{srt}
 \alias{srt}
-\title{Signed Residual Time}
+\title{Signed Residual Time (Trial)}
 \usage{
-srt(score, deadline, rt)
+srt(rt, x, deadline)
 }
 \arguments{
-\item{score}{Numeric Vector // A vector of scores representing correct or incorrect.}
+\item{rt}{Numeric vector of response times.}
 
-\item{deadline}{Numeric Vector // A vector of deadline times, i.e. the time at which a response must have been given by.}
+\item{x}{Numeric Vector of scores, should be coded correct = 1, incorrect = 0.}
 
-\item{rt}{Numeric Vector // A vector of response times.}
+\item{deadline}{Number or numeric vector of length(rt) indicating the trial deadline.}
 }
 \description{
-Calculate signed residual time (Maris & van der Maas, 2012).
+Calculate signed residual time (Maris & van der Maas, 2012) for each provided trial.
 }
