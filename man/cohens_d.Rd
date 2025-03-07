@@ -2,21 +2,18 @@
 % Please edit documentation in R/formulae.R
 \name{cohens_d}
 \alias{cohens_d}
-\title{Cohen's D}
+\title{Cohen's D (Paired T-Test)}
 \usage{
-cohens_d(x, y, paired = F)
+cohens_d(x, y)
 }
 \arguments{
 \item{x}{Numeric vector of data from population x.}
 
 \item{y}{Numeric vector of data from population y.}
-
-\item{paired}{Bool indicating if the populations are paired or independent.
-Paired populations have Cohen's recommended correction for Pearson's r automatically applied.}
 }
 \value{
-The calculated d parameter, automatically correct for Pearson's r when required.
+The calculated d parameter, automatically correct for Pearson's r as suggested by Cohen.
 }
 \description{
-Calculate Cohen's d from the provided variables.
+Calculate Cohen's d using the t-statistic from the provided variables.
 }

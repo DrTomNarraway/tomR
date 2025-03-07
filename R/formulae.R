@@ -140,18 +140,16 @@ Z <- function(sample, dps=0) {
   return(out)
 }
 
-#' @title Cohen's D
+#' @title Cohen's D (Paired T-Test)
 #'
-#' @description Calculate Cohen's d from the provided variables.
+#' @description Calculate Cohen's d using the t-statistic from the provided variables.
 #' @param x Numeric vector of data from population x.
 #' @param y Numeric vector of data from population y.
-#' @param paired Bool indicating if the populations are paired or independent.
-#' Paired populations have Cohen's recommended correction for Pearson's r automatically applied.
-#' @return The calculated d parameter, automatically correct for Pearson's r when required.
-cohens_d <- function(x, y, paired=F) {
-  t = stats::t.test(x, y, paired=paired)$statistic
-  N = stats::t.test(x, y, paired=paired)$parameter + 1
-  d = t / sqrt(N)
-  if (paired) d = d / sqrt(1-stats::cor(x,y))
+#' @return The calculated d parameter, automatically correct for Pearson's r as suggested by Cohen.
+cohens_d = function(x, y) {
+  t = unname(stats::t.test(x, y, paired=T)$statistic)
+  N = unname(stats::t.test(x, y, paired=T)$parameter) + 1
+  pearsons_r = stats::cor(x, y)
+  d = (t/sqrt(N)) * sqrt(1-pearsons_r)
   return(d)
 }
