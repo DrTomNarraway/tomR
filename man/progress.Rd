@@ -7,7 +7,7 @@
 progress(x, y, dps = 0, colour = "white")
 }
 \arguments{
-\item{x}{Numeric variable indicating the current state of the loop}
+\item{x}{Numeric variable indicating the current state of the loop.}
 
 \item{y}{Numeric variable indicating the end of the loop.}
 
@@ -16,6 +16,6 @@ progress(x, y, dps = 0, colour = "white")
 \item{colour}{The colour to print the percentage in. Must be available in \code{\link{ansi_colours}}.}
 }
 \description{
-cat print the current progress of the loop as a percentage of x over y.
+cat the current progress of the loop as a percentage of x over y.
 Always uses a \\r call to clear the line and replace the current percentage.
 }

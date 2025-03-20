@@ -20,5 +20,5 @@ spinner(i, set = "circle", colour = "white")
 \item{colour}{The colour to print the spinner in. Must be available in \code{\link{ansi_colours}}.}
 }
 \description{
-cat print a symbol to show the script is working. Always uses a \\r call to clear the line and replace the current percentage.
+cat a symbol to show the script is working. Always uses a \\r call to clear the line and replace the current percentage.
 }
