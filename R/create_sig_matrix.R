@@ -1,34 +1,4 @@
 
-#' @title Return Rounded Seconds from Milliseconds
-#'
-#' @description Divide milliseconds by 1000 and then round to specified decimal places.
-#' @param milliseconds Data to convert to seconds. Expects numeric.
-#' @param dp Optional. Number of decimal places to round to. Defaults to 3.
-#' @returns A data frame of rounded seconds of the same type as the input data.
-return_rounded_seconds<-function(milliseconds, dp=3){
-  return(round(milliseconds/1000, dp))
-}
-
-#' @title Meanify
-#'
-#' @description Group and summarise a data.frame into a meanified version.
-#' @param data The data.frame to meanify.
-#' @param ... The columns to group by.
-#' @param rt.col The current name of the RT column. Will be renamed 'RT'.
-#' @param score.col The current name of the score column. Will become the 'PC' (percentage correct) column.
-meanify <- function(data, ..., rt.col='RT', score.col='Score') {
-  out <- dplyr::group_by(.data=data, ...)
-  colnames(out)[colnames(out)==rt.col] = 'RT'
-  colnames(out)[colnames(out)==score.col] = 'Score'
-  out <- dplyr::summarise(
-    .data = out,
-    .groups = 'keep',
-    RT = mean(RT),
-    PC = mean(Score)
-  )
-  return(out)
-}
-
 #' @title Create Significance Matrix
 #'
 #' @description Create a matrix counting the number of positive t-tests.
@@ -72,10 +42,3 @@ create_sig_matrix <- function(data, dim, diag, over, var, alpha=0.05) {
   }
   return(matrix)
 }
-
-#' @title Normalize
-#'
-#' @description Re-scale a vector of any length to the range 0 to 1, aka, normalize it.
-#' @param x The vector to normalize.
-#' @return A vector of length x with each value normalized.
-normalize <- function(x) {return((x-min(x))/(max(x)-min(x)))}
