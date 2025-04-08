@@ -28,4 +28,11 @@ A vector of scores of the same length as the passed vectors.
 }
 \description{
 Estimate Log A Index (Dennis & Evans, 1996) for the given block.
+LAI is a measure of ability regardless of the participants chosen speed-accuracy
+threshold. LAI can be formally expressed as,
+\deqn{LAI = \frac{-1}{RT - s} \cdot \log{\frac{A - logit(p)}{A}} }
+where A is asymptotic accuracy, that is the greatest value logit(p) can take,
+s is the minimum time necessary to respond above chance (i.e. non-decision time),
+p is the probability of a correct response, and logit(p) is the log odds in favor
+of a correct response.
 }
