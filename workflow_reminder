@@ -1,0 +1,10 @@
+
+# package update workflow reminder
+
+To test new content use devtools::load_all() to load the package into the project.
+
+To update documentation, or have roxygen make new documentation, use devtools::document().
+
+To check the package will load use devtools::check().
+
+If the change was breaking use usethis::use_version('major') otherwise call usethis::use_version('minor')
