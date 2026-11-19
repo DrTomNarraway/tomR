@@ -10,7 +10,7 @@ lai(rt, pc, s = 0.305, A = 5.294, max_p = 0.995)
 \item{rt}{Numeric vector of response times.}
 
 \item{pc}{Numeric vector of proportion correct scores. The average PC score for
-this block can be taken as p, the probabilty of a correct response.}
+this block can be taken as p, the probability of a correct response.}
 
 \item{s}{The minimum response time required for accuracy to be greater than chance.
 This is equivilent to non-decision time, and as such the default value provided

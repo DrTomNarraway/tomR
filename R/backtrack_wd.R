@@ -4,6 +4,7 @@
 #' @description Go through the current working directory and set a new WD from its path. Helpful for working on different devices with different paths to the same git repo.
 #' @param target The name of the directory that will become the new working directory.
 #' @param verbose Should stuff be printed to the console or not?
+#' @export
 backtrack_wd <- function(target, verbose=F) {
   current.wd = getwd()
   split.wd = strsplit(current.wd, '/')[[1]]

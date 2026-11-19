@@ -7,6 +7,7 @@
 #' @param y numeric // The y position (column) to look at.
 #' @param ignore_headings bool // Should the x and y coordinates be adjusted to
 #' ignore the heading row and row-number coolumn?
+#' @export
 get_cell_content <- function(table, x, y, ignore_headings=T) {
   if (ignore_headings) {x=x+1;y=y+1}
   cell = which(table$layout$t==y & table$layout$l==x)

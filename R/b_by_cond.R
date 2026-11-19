@@ -8,6 +8,7 @@
 #' @param one_cond single character string // Indicates the current condition.
 #' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing b from prms_model based on one_cond.
+#' @export
 b_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
   return(rep(prms_model[paste0('b',one_cond)], length(t_vec)))
 }
@@ -21,6 +22,7 @@ b_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
 #' @param one_cond single character string // Indicates the current condition.
 #' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing b from prms_model.
+#' @export
 b_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts) {
   return(rep(prms_model[["b"]], length(t_vec)))
 }

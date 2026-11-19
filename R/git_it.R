@@ -4,6 +4,9 @@
 #' @description Try to load a package you got from github, or, install it from github if you do not have it yet. If you do not have devtools the function will first install that. After doing all that, spin up the library in the current environment.
 #' @param repo The name of the Github repository to load from, as if using install_github. If already installed will use the package portion to load the library.
 #' @param quiet Stop the function from printing messages to your console.
+#' @importFrom utils installed.packages install.packages
+#' @importFrom devtools install_github
+#' @export
 git_it <- function(repo, quiet=F) {
   user = strsplit(repo,'/')[[1]][1]
   package = strsplit(repo,'/')[[1]][2]
@@ -45,6 +48,7 @@ git_it <- function(repo, quiet=F) {
 #' @param repo The name of the Github repository to check.
 #' @param verbose If true print lots of information to the console.
 #' @returns True if the latest github version and installed version match.
+#' @export
 check_git <- function(repo, verbose=F) {
   user = strsplit(repo,'/')[[1]][1]
   package = strsplit(repo,'/')[[1]][2]

@@ -5,6 +5,7 @@
 #' @param rt Vector of response times, one per trial.
 #' @param nc Vector indicating the outcome of the trial.
 #' @return A vector of scores of the same length as the passed vectors.
+#' @export
 rr <- function(rt, nc) {
   rr = nc / rt
   return(rr)
@@ -17,6 +18,7 @@ rr <- function(rt, nc) {
 #' @param pc Numeric vector of proportion correct scores.
 #' @param n Integer indicating the number of trials that make up this block.
 #' @return A vector of scores of the same length as the passed vectors.
+#' @export
 rr_block <- function(rt, pc, n) {
   rr = (pc * n) / (rt * n)
   return(rr)

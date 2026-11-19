@@ -5,6 +5,8 @@
 #' @param x Numeric vector of data from population x.
 #' @param y Numeric vector of data from population y.
 #' @return The calculated d parameter, automatically correct for Pearson's r as suggested by Cohen.
+#' @importFrom stats t.test cor
+#' @export
 cohens_d = function(x, y) {
   t = unname(stats::t.test(x, y, paired=T)$statistic)
   N = unname(stats::t.test(x, y, paired=T)$parameter) + 1

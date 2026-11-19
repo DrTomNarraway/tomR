@@ -12,6 +12,8 @@
 #' is a measure of RT adjusted for errors, when there are no errors there is nothing
 #' to adjust for and we can instead use the following formula,
 #' \deqn{LISAS = \overline{RT}}
+#' @importFrom stats sd var
+#' @export
 lisas <- function(rt, pc){
   if (length(rt) != length(pc)) stop('Passed vectors are not the same length.')
   if (stats::var(pc)!=0)

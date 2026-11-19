@@ -7,6 +7,8 @@
 #' @param y Numeric variable indicating the end of the loop.
 #' @param dps Number of decimal places to round the percentage to.
 #' @param colour The colour to print the percentage in. Must be available in \code{\link{ansi_colours}}.
+#' @importFrom stringr str_pad
+#' @export
 progress <- function(x, y, dps=0, colour='white') {
   cat('\r',tomR::ansi_colours[colour],paste0(round((x/y)*100, dps),'%'),'\033[0m        ')
 }
@@ -16,6 +18,7 @@ progress <- function(x, y, dps=0, colour='white') {
 #' @description cat the current progress of a set of nested loops. Always uses a \\r call to clear the line and replace the current percentage.
 #' @param ... Any number of pairs of the format c(current, max). Each listed pair will become one percentage display in the console.
 #' @param dps Number of decimal places to round the percentage to.
+#' @export
 nested_progress <- function (..., dps=0) {
   args = list(...)
   ps = rep(NA, length(args))

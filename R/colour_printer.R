@@ -6,6 +6,7 @@
 #' @param colour string // black, red, green, blue, pink, lavender, or yellow.
 #' @param sep string // Separator to use between arguments.
 #' @param lb bool // Should an empty line be printed after the message?
+#' @export
 colour_printer <- function(..., colour='red', sep=' ', lb=TRUE){
   colour <- tomR::ansi_colours[colour]
   args <- lapply(list(...), as.character)
@@ -20,6 +21,7 @@ colour_printer <- function(..., colour='red', sep=' ', lb=TRUE){
 #' @param ... Cohered to String // Content to print to the console.
 #' @param sep string // Separator to use between arguments.
 #' @param lb bool // Should an empty line be printed after the message?
+#' @export
 pride <- function(..., sep=' ', lb=TRUE){
   args <- lapply(list(...), as.character)
   colours <- tomR::ansi_colours[2:7]

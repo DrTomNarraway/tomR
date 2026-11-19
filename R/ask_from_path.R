@@ -3,6 +3,7 @@
 #'
 #' @description Look at all of the files in a directory and be prompted to choose one of them to load.
 #' @param dir The path to the directory where your files are located.
+#' @export
 ask_from_path <- function(dir) {
   last_char <- substr(dir, nchar(dir), nchar(dir))
   if (!last_char %in% c('\\','/')) {dir <- paste0(dir,'\\')}

@@ -16,6 +16,7 @@
 #' as this means there is no variance and thus the standard deviation equals 0.
 #' When this is the case we use the alternate formula as follows,
 #' \deqn{BIS = -1 \cdot Z_{rt}}
+#' @export
 bis <- function(rt, pc){
   if (length(rt) != length(pc)) stop('Passed vectors are not the same length.')
   if (stats::var(pc) != 0)

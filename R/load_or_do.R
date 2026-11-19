@@ -5,6 +5,7 @@
 #' @param path The path to the file you want to load, or save to if nothing is loaded.
 #' @param do Function to perform if no file can be loaded.
 #' @param quiet Suppress print and message commands. Default to false.
+#' @export
 load_or_do <- function(path, do, quiet=F) {
   file_exists <- file.exists(path)
   if (file_exists) {

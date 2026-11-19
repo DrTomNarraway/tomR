@@ -1,11 +1,12 @@
 
 #' @title Convert Matrix to Table
 #'
-#' @description Convert a matrix to a gridExtra::tableGrob.
+#' @description Convert a matrix to a gridExtra::tableGrob. returns the table with an aesthetic similar to the ggplot theme_classic aesthetics. You cannot control or change those details here.
 #' @param matrix The matrix to convert.
+#' @importFrom gridExtra ttheme_minimal tableGrob
+#' @importFrom gtable gtable_add_grob
 #' @return A gridExtra::tableGrob containing the values from the matrix.
-#' @note # returns the table with an aesthetic similar to the ggplot theme_classic
-#' aesthetics. You cannot control or change those details here.
+#' @export
 convert_matrix_to_table <- function(matrix) {
   .cols = ncol(matrix)
   .rows = nrow(matrix)
@@ -25,6 +26,7 @@ convert_matrix_to_table <- function(matrix) {
 #' @description Convert a gridExtra::tableGrob to a matrix.
 #' @param table The gridExtra::tableGrob to convert.
 #' @return A matrix of the cell values from the provided table.
+#' @export
 convert_table_to_matrix <- function(table) {
   rows = nrow(table)-1
   cols = ncol(table)-1

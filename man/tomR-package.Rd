@@ -4,8 +4,17 @@
 \name{tomR-package}
 \alias{tomR}
 \alias{tomR-package}
-\title{tomR: Tom R}
+\title{tomR: Tom's personal R Codebase}
 \description{
-A personal R package to reduce the amount of times I need to write the exact same lines of code.
+What the package does (one paragraph).
+}
+\author{
+\strong{Maintainer}: Tom Narraway \email{tomax591.de@gmail.com}
+
+Authors:
+\itemize{
+  \item Tom Narraway \email{tomax591.de@gmail.com}
+}
+
 }
 \keyword{internal}

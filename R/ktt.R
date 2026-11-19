@@ -5,6 +5,7 @@
 #' @param rt Numeric Vector // A vector of response times.
 #' @param score Numeric Vector // A vector of scores representing correct or incorrect.
 #' @returns Returns a data frame of survivors after performing "kill the twin".
+#' @export
 ktt <- function(rt, score) {
   correct.rts = rt[score == 1]
   error.rts = rt[score == 0]

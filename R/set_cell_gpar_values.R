@@ -9,6 +9,7 @@
 #' @param ignore_headings bool // Should the x and y coordinates be adjusted to
 #' ignore the heading row and row-number coolumn?
 #' @returns gridExtra::tableGrob // Return the input table with gpar adjustments applied.
+#' @export
 set_cell_gpar_values <- function (table, x, y, ..., ignore_headings = T) {
   if (ignore_headings) {
     x = x + 1

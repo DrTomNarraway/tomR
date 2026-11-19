@@ -5,6 +5,7 @@
 #' @param options The type that the response must be given in.
 #' @param prompt The prompt for the user, printed as a message.
 #' @return Returns one of the options provided to the options argument.
+#' @export
 return_input <- function(options, prompt='Please choose from the following options:') {
   input <- NULL
   message(prompt)

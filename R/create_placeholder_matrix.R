@@ -5,6 +5,7 @@
 #' @param len Length of the matrix sides.
 #' @param diags list // What to place above and below the diagonal line.
 #' @return A matrix containing the values provided in diags of size len.
+#' @export
 create_placeholder_matrix <- function(len=3, diags=c('below', 'above')) {
   matrix = matrix(0, nrow=len, ncol=len)
   colnames(matrix) = rownames(matrix) = 1:len
@@ -24,6 +25,7 @@ create_placeholder_matrix <- function(len=3, diags=c('below', 'above')) {
 #' those above the diagonal are positive and those below are negative.
 #' @param len Length of the matrix sides.
 #' @return A matrix containing random valuesof size len.
+#' @export
 create_matrix_of_random_values <- function(len=3) {
   matrix = matrix(0, nrow=len, ncol=len)
   colnames(matrix) = rownames(matrix) = 1:len

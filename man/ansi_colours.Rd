@@ -5,8 +5,10 @@
 \alias{ansi_colours}
 \title{ANSI Colour Data}
 \format{
-## `ansi_colours`
+\subsection{\code{ansi_colours}}{
+
 A named character array with length 8.
+}
 }
 \usage{
 ansi_colours

@@ -12,6 +12,7 @@
 #' }
 #' @param colour The colour to print the spinner in. Must be available in \code{\link{ansi_colours}}.
 #' @md
+#' @export
 spinner <- function(i, set='circle', colour='white') {
   symbols = list(
     'circle' = c("\U25D0","\U25D3","\U25D1","\U25D2"),

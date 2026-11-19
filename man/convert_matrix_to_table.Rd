@@ -13,9 +13,5 @@ convert_matrix_to_table(matrix)
 A gridExtra::tableGrob containing the values from the matrix.
 }
 \description{
-Convert a matrix to a gridExtra::tableGrob.
-}
-\note{
-# returns the table with an aesthetic similar to the ggplot theme_classic
-aesthetics. You cannot control or change those details here.
+Convert a matrix to a gridExtra::tableGrob. returns the table with an aesthetic similar to the ggplot theme_classic aesthetics. You cannot control or change those details here.
 }

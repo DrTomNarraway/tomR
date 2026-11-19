@@ -4,6 +4,7 @@
 #' @description Calculate the sample standard deviation.
 #' @param sample vector-like. The sample from which to calculate the standard deviation.
 #' @param places numeric, default = 3. Value to round to. Pass in 0 or FALSE to not round.
+#' @export
 ssd <- function(sample, places=3) {
   l      = length(sample)
   x      = sample

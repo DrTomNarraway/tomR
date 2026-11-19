@@ -6,6 +6,7 @@
 #' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
 #' @param ms_to_s bool, default = true // If true convert from ms to seconds.
 #' @param verbose bool, default = false // Should stuff be printed to the console or not?
+#' @export
 translate_drift <- function(d, dps=3, ms_to_s=T, verbose=F) {
   if (ms_to_s) {
     drift = d / 4

@@ -7,6 +7,7 @@
 #' @param rt Numeric vector of response times.
 #' @param pc Numeric vector of proportion correct scores.
 #' @return A vector of scores of the same length as the passed vectors.
+#' @export
 ies <- function(rt, pc) {
   if (length(rt) != length(pc)) stop('Passed vectors are not the same length.')
   ies = rt / pc

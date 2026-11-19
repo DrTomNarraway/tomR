@@ -5,8 +5,10 @@
 \alias{sat_performance}
 \title{SAT Performance}
 \format{
-## `sat_performance`
+\subsection{\code{sat_performance}}{
+
 A 60 x 3 tibble data.frame with columns boundary (dlb), rt (dbl), and pc (dbl).
+}
 }
 \usage{
 sat_performance

@@ -6,6 +6,7 @@
 #' @param x Numeric Vector of scores, should be coded correct = 1, incorrect = 0.
 #' @param deadline Number or numeric vector of length(rt) indicating the trial deadline.
 #' @return A vector of scores of the same length as the passed vectors.
+#' @export
 srt <- function(rt, x, deadline) {
   srt = ((2*x) - 1) * (deadline - rt)
   return(srt)
@@ -20,6 +21,7 @@ srt <- function(rt, x, deadline) {
 #' @param n Integer indicating the number of trials that make up this block.
 #' @param deadline Number indicating the mean trial deadline.
 #' @return A vector of scores of the same length as the passed vectors.
+#' @export
 srt_block <- function(rt, pc, n, deadline) {
   x = pc * n # estimated sum of scores
   srt = ((2*x) - n) * (deadline - rt)

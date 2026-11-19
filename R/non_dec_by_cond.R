@@ -8,6 +8,7 @@
 #' @param one_cond single character string // Indicates the current condition.
 #' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing non_dec from prms_model.
+#' @export
 non_dec_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
   non_dec = prms_model[paste0('non_dec',one_cond)]
   tmax = prms_solve[["t_max"]]
@@ -28,6 +29,7 @@ non_dec_by_cond <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
 #' @param one_cond single character string // Indicates the current condition.
 #' @param ddm_opts Additional arguments to pass to deeper dRiftDM calls.
 #' @return A vector of length t_vec containing non_dec from prms_model.
+#' @export
 non_dec_fixed <- function(prms_model, prms_solve, t_vec, one_cond, ddm_opts){
   non_dec = prms_model[["non_dec"]]
   tmax = prms_solve[["t_max"]]

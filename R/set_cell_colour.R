@@ -9,6 +9,7 @@
 #' @param ignore_headings bool // Should the x and y coordinates be adjusted to
 #' ignore the heading row and row-number coolumn?
 #' @returns gridExtra::tableGrob // Return the input table with the colour of the cell adjusted.
+#' @export
 set_cell_colour <- function(table, x, y, colour, ignore_headings=T){
   if (ignore_headings) {x=x+1;y=y+1}
   index = table$layout$t==y&table$layout$l==x&table$layout$name=="core-bg"

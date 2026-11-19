@@ -5,6 +5,7 @@
 #' @param .object The R object to try and save.
 #' @param file The file path you want to save to.
 #' @return True if file was saved, false otherwise.
+#' @export
 lifesaver <- function(.object, file) {
   if (file.exists(file)) {
     print('A file already exists at the path. \nAre you sure you want to save?')

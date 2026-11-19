@@ -7,6 +7,7 @@
 #' @return A gridExtra::tableGrob containing the values from the matrix.
 #' @note This function will only add shading to positive values, you should use
 #' colour_blue_to_orange for tables with positive and negative values.
+#' @export
 apply_heat_to_table <- function(table) {
   reds = c("white","#FEE0D2","#FC9272","#CB181D","red")
   rows = nrow(table)-1

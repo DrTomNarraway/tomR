@@ -7,6 +7,8 @@
 #' @param fa Number  or numeric-vector of false alarms.
 #' @param n Number  or numeric-vector of total trials, i.e. hits, false alarms, and misses.
 #' @return A number or numeric-vector of d' values.
+#' @importFrom stats qnorm
+#' @export
 d_prime <- function(h, fa, n) {
   min_p = 1/n
   max_p = (n-1)/n

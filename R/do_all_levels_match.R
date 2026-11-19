@@ -12,6 +12,7 @@
 #' such as c('rt','pc','ID'), or you can write that list directly into the function
 #' such as compare_levels_of_variables(a, b, 'rt', 'pc', 'ID') and the function will
 #' work the exact same way.
+#' @export
 do_all_levels_match <- function(a, b, vars, ..., verbose=F) {
   vars = c(vars, lapply(list(...), as.character))
   out = rep(NA, length(vars))

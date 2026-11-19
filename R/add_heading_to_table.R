@@ -5,7 +5,9 @@
 #' @param table gridExtra::tableGrob // The table to add the heading to.
 #' @param heading string // The heading to add.
 #' @param fontsize numeric // The size of the font of the heading.
+#' @importFrom gridExtra arrangeGrob
 #' @return The gridExtra::tableGrob table with the heading at the top.
+#' @export
 add_heading_to_table <- function(table, heading='Heading', fontsize=18) {
   top = grid::textGrob(heading, gp=grid::gpar(fontsize=fontsize))
   out = gridExtra::arrangeGrob(table, top=top)

@@ -5,6 +5,7 @@
 #' @param value numeric. Percentage from which the SD should be calculated.
 #' @param dps numeric, default = 3 // Value to round to. Pass in 0 or FALSE to not round.
 #' @param verbose bool, default = false // Should stuff be printed to the console or not.
+#' @export
 psd <- function(value, dps=3, verbose=F){
   x    = value
   sqrd = value ^ 2

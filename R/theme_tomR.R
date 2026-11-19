@@ -2,6 +2,8 @@
 #' @title GGPlot Theme tomR
 #'
 #' @description Add the official custom tomR ggplot theme to a ggplot object.
+#' @import ggplot2
+#' @export
 theme_tomR <- function() {
   ggplot2::theme_grey() + ggplot2::theme(
     panel.background = ggplot2::element_rect(fill="white"),

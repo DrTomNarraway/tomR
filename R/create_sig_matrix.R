@@ -8,6 +8,8 @@
 #' @param over string // The variable to loop over while counting number of significant tests.
 #' @param var string // The variable to perform t-tests on.
 #' @param alpha numeric, default = 0.05 // The alpha value to use for the t-tests.
+#' @importFrom stats t.test
+#' @export
 create_sig_matrix <- function(data, dim, diag, over, var, alpha=0.05) {
   if (is.null(data[[dim]])) stop('Matrix dimension not found in data.frame provided.')
   if (is.null(data[[diag]])) stop('Diagonal dimension not found in data.frame provided.')
@@ -34,7 +36,7 @@ create_sig_matrix <- function(data, dim, diag, over, var, alpha=0.05) {
       sigs = 0
       for (ovr in 1:n.overs) {
         rows = data[[dim]]%in%c(dim1,dim2) & data[[diag]]==dg & data[[over]]==ovr
-        t.test = t.test(data[[var]][rows] ~ data[[dim]][rows], data=data[rows, ])
+        t.test = stats::t.test(data[[var]][rows] ~ data[[dim]][rows], data=data[rows, ])
         if (t.test$p.value <= alpha) sigs = sigs + 1
       }
       matrix[y,x] = sigs

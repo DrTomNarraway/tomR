@@ -5,6 +5,7 @@
 #' how positive or negative they are.
 #' @param table The table to apply colouring to.
 #' @return A gridExtra::tableGrob containing the values from the matrix.
+#' @export
 colour_table_blue_to_orange <- function(table) {
   colours = c("#D94701","#FD8D3C","#FDBE85","#FEEDDE","white","#EFF3FF","#BDD7E7","#6BAED6","#2171B5")
   rows = nrow(table)-1
