@@ -10,7 +10,7 @@ normalize(x)
 \item{x}{The vector to normalize.}
 }
 \value{
-A vector of length x with each value normalized.
+A vector of length length(x) with each value normalized.
 }
 \description{
 Re-scale a vector of any length to the range 0 to 1, aka, normalize it.

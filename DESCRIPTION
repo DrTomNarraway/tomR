@@ -1,14 +1,13 @@
 Package: tomR
 Type: Package
 Title: Tom R
-Version: 1.0.0
+Version: 19.11.26.1
 Author: Dr Tom Narraway
 Maintainer: Dr Tom Narraway <tomax591.de@gmail.com>
 Description: A personal R package to reduce the amount of times I need to write the exact same lines of code.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
 Imports: 
     devtools,
     gridExtra,
@@ -20,3 +19,4 @@ Imports:
     ggplot2
 Depends: 
     R (>= 3.5)
+Config/roxygen2/version: 8.1.1
