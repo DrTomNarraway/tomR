@@ -6,7 +6,7 @@
 \alias{tomR-package}
 \title{tomR: Tom's personal R Codebase}
 \description{
-What the package does (one paragraph).
+Wrapper and convenience functions, mostly for cognitive models. Version numbering follows format yy.mm.dd.xx, where xx is the update within that day. Assume all updates are breaking.
 }
 \author{
 \strong{Maintainer}: Tom Narraway \email{tomax591.de@gmail.com}

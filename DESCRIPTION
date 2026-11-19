@@ -1,15 +1,18 @@
 Package: tomR
 Title: Tom's personal R Codebase
-Version: 19.11.26.2
+Version: 26.11.19.3
 Authors@R: 
     person("Tom", "Narraway", , "tomax591.de@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: 
+    Wrapper and convenience functions, mostly for cognitive models.
+    Version numbering follows format yy.mm.dd.xx, where xx is the update within that day.
+    Assume all updates are breaking.
 License: MIT + file LICENSE
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Imports: 
-    devtools, ggplot2, gridExtra, gtable, stringr
+    devtools, ggplot2, gridExtra, gtable, minpack.lm, stats, stringr
 Depends: 
     R (>= 3.5)
 LazyData: true
